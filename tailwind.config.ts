@@ -20,20 +20,26 @@ const config = {
     extend: {
       colors: {
         primary: {
-          100: '#272D2D',
-          200: '#1C2526',
-          300: '#131E20',
-        },
-        secondary: {
-          100: '#EDF4F2',
-          200: '#DDE9E6',
-          300: '#B0BFBD',
-        },
-        accent: {
           100: '#F4FF47',
           200: '#D0DB33',
           300: '#ACB723',
         },
+        secondary: {
+          100: '#272D2D',
+          200: '#1C2526',
+          300: '#131E20',
+        },
+        tertiary: {
+          100: '#EDF4F2',
+          200: '#DDE9E6',
+          300: '#B0BFBD',
+        },
+      },
+      textColor: {
+        primary: '#071015',
+      },
+      backgroundColor: {
+        base: '#F6F6F4',
       },
       keyframes: {
         'accordion-down': {
