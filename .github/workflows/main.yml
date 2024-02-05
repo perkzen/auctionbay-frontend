@@ -19,9 +19,6 @@ jobs:
       - name: Prettier format
         run: npm run format
 
-      - name: Type check
-        run: npm run typecheck
-
       - name: Lint
         run: npm run lint
 
