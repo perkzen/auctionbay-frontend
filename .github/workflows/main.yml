@@ -2,9 +2,6 @@ name: Auctionbay Frontend CI/CD
 
 on: [ pull_request ]
 
-env:
-  NODE_ENV: development
-
 jobs:
   build:
     runs-on: ubuntu-latest
