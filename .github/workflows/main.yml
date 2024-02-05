@@ -2,6 +2,9 @@ name: Auctionbay Frontend CI/CD
 
 on: [ pull_request ]
 
+env:
+  NEXT_PUBLIC_BACKEND_URL: https://localhost:8000
+
 jobs:
   build:
     runs-on: ubuntu-latest

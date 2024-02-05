@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        '3.5xl': ['2rem', '2.4rem'],
+      },
+
       colors: {
         primary: {
           100: '#F4FF47',
@@ -37,6 +41,7 @@ const config = {
       },
       textColor: {
         primary: '#071015',
+        tertiary: '#74817F',
       },
       backgroundColor: {
         base: '#F6F6F4',

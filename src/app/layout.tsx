@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { cn } from '@/libs/utils';
+import Providers from '@/components/providers/providers';
 import './globals.css';
-import Navbar from '@/components/ui/navbar';
-import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,15 +15,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body
-        className={cn(inter.className, 'bg-base flex min-h-screen flex-col')}
+        className={cn(inter.className, 'flex min-h-screen flex-col bg-base')}
       >
-        <Navbar />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
