@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-base')}>
-        <div className={'flex min-h-screen flex-col'}>
-          <Navbar />
-          {children}
-        </div>
+      <body
+        className={cn(inter.className, 'bg-base flex min-h-screen flex-col')}
+      >
+        <Navbar />
+        {children}
       </body>
     </html>
   );
