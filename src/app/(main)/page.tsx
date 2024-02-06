@@ -3,11 +3,17 @@ import Image from 'next/image';
 import AuctionsDesktopImage from '@/assets/auctions-desktop.svg';
 import AuctionsMobileImage from '@/assets/auctions-mobile.svg';
 import { Button } from '@/components/ui/button';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 export default function Home() {
   const session = useSession();
+
   console.log(session);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <main className="flex  flex-1 flex-col items-center  overflow-auto">
@@ -21,7 +27,9 @@ export default function Home() {
           product you <br className={'visible sm:hidden'} /> want!
         </p>
       </div>
-      <Button className={'mt-4 sm:mt-8'}>Start bidding</Button>
+      <Button className={'mt-4 sm:mt-8'} onClick={handleSignOut}>
+        Start bidding
+      </Button>
       <Image
         src={AuctionsDesktopImage}
         alt={'auctions'}
