@@ -18,9 +18,11 @@ const Navbar = () => {
         />
       </Link>
       <div className={'flex flex-row items-center gap-2'}>
-        <Button variant={'ghost'} size={'fit'}>
-          Log in
-        </Button>
+        <Link href={Route.LOGIN}>
+          <Button variant={'ghost'} size={'fit'}>
+            Log in
+          </Button>
+        </Link>
         <div>or</div>
         <Link href={Route.SIGNUP}>
           <Button variant={'secondary'}>Sign up</Button>

@@ -4,6 +4,8 @@ on: [ pull_request ]
 
 env:
   NEXT_PUBLIC_BACKEND_URL: https://localhost:8000
+  NEXTAUTH_SECRET: 1234567890
+  NEXTAUTH_URL: http://localhost:3000
 
 jobs:
   build:

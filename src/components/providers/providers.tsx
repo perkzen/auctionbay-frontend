@@ -2,6 +2,7 @@
 import { ReactNode, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster as ToastProvider } from 'sonner';
+import { SessionProvider } from 'next-auth/react';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -18,12 +19,12 @@ const Providers = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <>
+    <SessionProvider>
       <QueryClientProvider client={queryClient}>
         {children}
         <ToastProvider position={'bottom-right'} richColors />
       </QueryClientProvider>
-    </>
+    </SessionProvider>
   );
 };
 

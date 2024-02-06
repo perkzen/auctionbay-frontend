@@ -1,24 +1,25 @@
 import { SignUpData } from '@/libs/validators/signup-validator';
 import { api } from '@/api/axios';
-import { useMutation, UseMutationOptions } from 'react-query';
 import { Endpoint } from '@/api/endpoints';
+import { LoginData } from '@/libs/validators/login-validator';
+import { AxiosResponse } from 'axios';
+import { User } from '@/models/user';
 
-export const SIGN_UP_KEY = 'SIGN_UP';
+export const signUp = async (data: SignUpData) => {
+  const res = await api.post(Endpoint.SIGNUP, data);
 
-export const signup = async (data: SignUpData) => {
-  const response = await api.post(Endpoint.SIGNUP, data);
-
-  if (response.status !== 201) {
+  if (res.status !== 201) {
     throw new Error('Failed to sign up');
   }
 };
 
-export const useSignup = (
-  opts?: UseMutationOptions<void, unknown, SignUpData, unknown>
-) => {
-  return useMutation({
-    mutationKey: [SIGN_UP_KEY],
-    mutationFn: signup,
-    ...opts,
-  });
+export const login = async (data: LoginData) => {
+  return (await api.post(Endpoint.LOGIN, data)) as AxiosResponse<User>;
+};
+
+export const refreshTokens = async (refreshToken: string) => {
+  const res = (await api.post(Endpoint.REFRESH_TOKEN, {
+    refreshToken,
+  })) as AxiosResponse<{ accessToken: string; refreshToken: string }>;
+  return res.data;
 };

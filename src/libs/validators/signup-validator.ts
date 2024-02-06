@@ -17,7 +17,7 @@ const strongPassword = () =>
       }
     );
 
-export const SignUpSchema = z
+export const SignUpValidator = z
   .object({
     firstname: z.string().min(2),
     lastname: z.string().min(2),
@@ -30,4 +30,4 @@ export const SignUpSchema = z
     path: ['repeatPassword'],
   });
 
-export type SignUpData = z.infer<typeof SignUpSchema>;
+export type SignUpData = z.infer<typeof SignUpValidator>;
