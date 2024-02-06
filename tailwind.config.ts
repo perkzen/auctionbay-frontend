@@ -20,6 +20,7 @@ const config = {
     extend: {
       fontSize: {
         '3.5xl': ['2rem', '2.4rem'],
+        '6.5xl': ['4rem', '4.8rem'],
       },
 
       colors: {

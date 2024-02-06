@@ -1,12 +1,5 @@
-//export {auth as default} from "@/libs/auth";
-
-// This middleware will be called for every request
-import { NextRequest, NextResponse } from 'next/server';
+export { default } from 'next-auth/middleware';
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/:path*'],
 };
-
-export default function middleware(request: NextRequest) {
-  return NextResponse.next();
-}

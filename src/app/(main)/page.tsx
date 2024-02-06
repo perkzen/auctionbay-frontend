@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="flex  flex-1 flex-col items-center  overflow-auto">
       <div className={'mt-16 flex w-full flex-col gap-2 text-center md:mt-24'}>
-        <h1 className="text-3.5xl font-bold sm:text-[64px]">
+        <h1 className="sm:text-6.5xl text-3.5xl font-bold">
           E-auctions made <br className={'visible md:hidden'} /> easy!
         </h1>
         <p className={'font-light'}>
