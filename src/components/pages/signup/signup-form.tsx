@@ -9,8 +9,8 @@ import {
   SignUpValidator,
 } from '@/libs/validators/signup-validator';
 import PasswordInput from '@/components/ui/password-input';
-import { useSignup } from '@/api/auth';
 import { toast } from 'sonner';
+import { useSignup } from '@/hooks/auth';
 
 const SignupForm = () => {
   const {

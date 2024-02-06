@@ -1,10 +1,14 @@
+'use client';
 import Image from 'next/image';
 import AuctionsDesktopImage from '@/assets/auctions-desktop.svg';
 import AuctionsMobileImage from '@/assets/auctions-mobile.svg';
-
 import { Button } from '@/components/ui/button';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
+  const session = useSession();
+  console.log(session);
+
   return (
     <main className="flex  flex-1 flex-col items-center  overflow-auto">
       <div className={'mt-16 flex w-full flex-col gap-2 text-center md:mt-24'}>

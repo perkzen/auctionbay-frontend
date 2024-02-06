@@ -3,11 +3,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginData, LoginValidator } from '@/libs/validators/login-validator';
-import { useLogin } from '@/api/auth';
 import { Input } from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useSignIn } from '@/hooks/auth';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { Route } from '@/routes';
 
 const LoginForm = () => {
   const {
@@ -18,21 +21,21 @@ const LoginForm = () => {
     resolver: zodResolver(LoginValidator),
   });
 
-  const { mutateAsync } = useLogin();
+  const router = useRouter();
 
-  const onSubmit = (data: LoginData) => {
-    console.log(data);
-    // toast.promise(
-    //     async () => {
-    //       await mutateAsync(data);
-    //     },
-    //     {
-    //       position: 'top-center',
-    //       loading: 'Creating account...',
-    //       success: 'Account created!',
-    //       error: 'Failed to create account. Please try again.',
-    //     }
-    // );
+  const { mutateAsync, isLoading, isError } = useSignIn({
+    onSuccess: () => {
+      router.push(Route.HOME);
+    },
+  });
+
+  const onSubmit = async (data: LoginData) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Logging in...',
+      success: 'Logged in successfully!',
+      error: 'Invalid credentials!',
+      position: 'top-center',
+    });
   };
 
   return (
@@ -62,11 +65,13 @@ const LoginForm = () => {
           error={errors.password?.message}
         />
       </div>
-      <Link href={'/'} className={'text-tertiary ml-auto text-xs font-light'}>
+      <Link href={'/'} className={'ml-auto text-xs font-light text-tertiary'}>
         Forgot password?
       </Link>
 
-      <Button className={'mt-4'}>Login</Button>
+      <Button className={'mt-4'} disabled={isLoading}>
+        Login
+      </Button>
     </form>
   );
 };

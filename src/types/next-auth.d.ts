@@ -1,14 +1,22 @@
-import NextAuth from 'next-auth';
+import NextAuth, { User } from 'next-auth';
+import { User as BackendUser } from '@/models/user';
 
 declare module 'next-auth' {
-  interface User {
-    id: string;
-    name: string;
-    email: string;
-  }
+  interface User extends BackendUser {}
 
   interface Session {
     user: User;
-    token: string;
+  }
+}
+
+import { JWT } from 'next-auth/jwt';
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    email: string;
+    sub: string;
+    iat: number;
+    exp: number;
+    user: User;
   }
 }
