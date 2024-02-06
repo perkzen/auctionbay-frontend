@@ -3,14 +3,9 @@ import Image from 'next/image';
 import AuctionsDesktopImage from '@/assets/auctions-desktop.svg';
 import AuctionsMobileImage from '@/assets/auctions-mobile.svg';
 import { Button } from '@/components/ui/button';
-import { signOut, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
+import { signOut } from 'next-auth/react';
 
 export default function Home() {
-  const session = useSession();
-
-  console.log(session);
-
   const handleSignOut = async () => {
     await signOut();
   };

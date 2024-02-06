@@ -23,7 +23,7 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const { mutateAsync, isLoading, isError } = useSignIn({
+  const { mutateAsync, isLoading } = useSignIn({
     onSuccess: () => {
       router.push(Route.HOME);
     },
@@ -65,7 +65,10 @@ const LoginForm = () => {
           error={errors.password?.message}
         />
       </div>
-      <Link href={'/'} className={'ml-auto text-xs font-light text-tertiary'}>
+      <Link
+        href={Route.FORGOT_PASSWORD}
+        className={'ml-auto text-xs font-light text-tertiary'}
+      >
         Forgot password?
       </Link>
 
