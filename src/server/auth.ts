@@ -21,7 +21,7 @@ export const authOptions: AuthOptions = {
         username: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req): Promise<User | null> {
+      async authorize(credentials): Promise<User | null> {
         if (!credentials?.username || !credentials?.password) {
           return null;
         }
@@ -66,7 +66,7 @@ export const authOptions: AuthOptions = {
         },
       };
     },
-    async session({ token, session, user }) {
+    async session({ token, session }) {
       session.user = token.user;
       return session;
     },
