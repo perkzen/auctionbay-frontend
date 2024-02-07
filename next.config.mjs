@@ -5,7 +5,11 @@ import { hostname } from 'node:os';
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', port: '', hostname: 's3-alpha-sig.figma.com' },
+      {
+        protocol: 'https',
+        port: '',
+        hostname: 'auctionbay-bucket.s3.eu-central-1.amazonaws.com',
+      },
     ],
   },
 };

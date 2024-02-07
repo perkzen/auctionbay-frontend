@@ -8,11 +8,19 @@ import HomeSvg from '@/assets/icons/Home.svg';
 import PersonSvg from '@/assets/icons/Person.svg';
 import HomeWhiteSvg from '@/assets/icons/Home-white.svg';
 import PersonWhiteSvg from '@/assets/icons/Person-white.svg';
+import { usePathname } from 'next/navigation';
 
 const NavigationTab = () => {
+  const pathname = usePathname();
+
   // Note: This is used to change color of svg when users presses or holds the tab otherwise it won't change the color
-  const [homeIcon, setHomeIcon] = useState(HomeWhiteSvg);
-  const [personIcon, setPersonIcon] = useState(PersonSvg);
+  const isAuctions = pathname === PrivateRoute.AUCTIONS;
+  const isProfile = pathname === PrivateRoute.PROFILE;
+
+  const [homeIcon, setHomeIcon] = useState(isAuctions ? HomeWhiteSvg : HomeSvg);
+  const [personIcon, setPersonIcon] = useState(
+    isProfile ? PersonWhiteSvg : PersonSvg
+  );
 
   const handleHomeMouseDown = () => {
     setHomeIcon(HomeWhiteSvg);
@@ -25,7 +33,7 @@ const NavigationTab = () => {
   };
 
   return (
-    <Tabs defaultValue={PrivateRoute.AUCTIONS}>
+    <Tabs defaultValue={pathname}>
       <TabsList className="flex flex-row gap-2 p-1">
         <Link href={PrivateRoute.AUCTIONS}>
           <TabsTrigger

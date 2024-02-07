@@ -1,8 +1,8 @@
 'use client';
 import { ReactNode, useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster as ToastProvider } from 'sonner';
 import { SessionProvider } from 'next-auth/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(

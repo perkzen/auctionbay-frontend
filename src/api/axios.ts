@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { env } from '@/env.mjs';
+import { getSession } from 'next-auth/react';
 
 export const api = axios.create({
   baseURL: env.NEXT_PUBLIC_BACKEND_URL,
@@ -9,13 +10,11 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use(async (config) => {
-  // try {
-  //   const session = await getSession();
-  //   if (session) {
-  //     config.headers.Authorization = `Bearer ${session.token}`;
-  //   }
-  // } catch (e) {
-  //   console.error(e);
-  // }
+  const session = await getSession();
+
+  if (session) {
+    config.headers.Authorization = `Bearer ${session.user.accessToken}`;
+  }
+
   return config;
 });

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/libs/utils';
@@ -33,7 +34,8 @@ const TimeTag = ({ size, endsAt, className }: TimeTagProps) => {
   const timeLeft = endsAt.getTime() - now;
   const variant = timeLeft <= MILLISECONDS_IN_A_DAY ? 'closing' : null;
 
-  const hoursLeft = Math.floor(timeLeft / MILLISECONDS_IN_AN_HOUR);
+  const nonNegativeTimeLeft = Math.max(0, timeLeft);
+  const hoursLeft = Math.floor(nonNegativeTimeLeft / MILLISECONDS_IN_AN_HOUR);
 
   return (
     <div
