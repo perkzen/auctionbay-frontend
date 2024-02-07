@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Route } from '@/routes';
+import { PrivateRoute } from '@/routes';
 import Link from 'next/link';
 import Image from 'next/image';
 import HomeSvg from '@/assets/icons/Home.svg';
@@ -25,10 +25,13 @@ const NavigationTab = () => {
   };
 
   return (
-    <Tabs defaultValue={Route.AUCTIONS}>
+    <Tabs defaultValue={PrivateRoute.AUCTIONS}>
       <TabsList className="flex flex-row gap-2 p-1">
-        <Link href={Route.AUCTIONS}>
-          <TabsTrigger value={Route.AUCTIONS} onMouseDown={handleHomeMouseDown}>
+        <Link href={PrivateRoute.AUCTIONS}>
+          <TabsTrigger
+            value={PrivateRoute.AUCTIONS}
+            onMouseDown={handleHomeMouseDown}
+          >
             <Image
               src={homeIcon}
               alt={'Auctions'}
@@ -39,9 +42,9 @@ const NavigationTab = () => {
             Auctions
           </TabsTrigger>
         </Link>
-        <Link href={Route.PROFILE}>
+        <Link href={PrivateRoute.PROFILE}>
           <TabsTrigger
-            value={Route.PROFILE}
+            value={PrivateRoute.PROFILE}
             onMouseDown={handlePersonMouseDown}
           >
             <Image

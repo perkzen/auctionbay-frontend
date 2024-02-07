@@ -9,7 +9,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 import Image from 'next/image';
 import ChevronRight from '@/assets/icons/Chevron-right.svg';
 
@@ -46,7 +46,7 @@ const ForgotPasswordForm = () => {
 
       <Link
         className={'mt-8 flex justify-center text-xs font-light text-tertiary'}
-        href={Route.LOGIN}
+        href={PublicRoute.LOGIN}
       >
         <Image src={ChevronRight} alt={'back to login'} className={'mr-2'} />
         Back to login

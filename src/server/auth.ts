@@ -1,6 +1,6 @@
 import { AuthOptions, getServerSession, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 import { login, refreshTokens } from '@/api/auth';
 import { decode } from 'jsonwebtoken';
 import { JWT } from 'next-auth/jwt';
@@ -12,7 +12,7 @@ export const authOptions: AuthOptions = {
   },
   secret: env.NEXTAUTH_SECRET,
   pages: {
-    signIn: Route.LOGIN,
+    signIn: PublicRoute.LOGIN,
   },
   providers: [
     CredentialsProvider({

@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '@/components/pages/login/login-form';
 import Link from 'next/link';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 import { Button } from '@/components/ui/button';
 
 const Login = () => {
@@ -16,7 +16,7 @@ const Login = () => {
       </div>
       <span className={'text-center font-light'}>
         Don&apos;t have an account?{' '}
-        <Link href={Route.SIGNUP}>
+        <Link href={PublicRoute.SIGNUP}>
           <Button variant={'ghost'} size={'fit'}>
             Sign up
           </Button>

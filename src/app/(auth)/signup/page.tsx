@@ -1,7 +1,7 @@
 import SignupForm from '@/components/pages/signup/signup-form';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 
 const Signup = () => {
   return (
@@ -15,7 +15,7 @@ const Signup = () => {
       </div>
       <span className={'text-center font-light'}>
         Already have an account?{' '}
-        <Link href={Route.LOGIN}>
+        <Link href={PublicRoute.LOGIN}>
           <Button variant={'ghost'} size={'fit'}>
             Log in
           </Button>

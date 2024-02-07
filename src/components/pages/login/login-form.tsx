@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useSignIn } from '@/hooks/auth';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 
 const LoginForm = () => {
   const {
@@ -25,7 +25,7 @@ const LoginForm = () => {
 
   const { mutateAsync, isLoading } = useSignIn({
     onSuccess: () => {
-      router.push(Route.AUCTIONS);
+      router.push(PublicRoute.AUCTIONS);
     },
   });
 
@@ -66,7 +66,7 @@ const LoginForm = () => {
         />
       </div>
       <Link
-        href={Route.FORGOT_PASSWORD}
+        href={PublicRoute.FORGOT_PASSWORD}
         className={'ml-auto text-xs font-light text-tertiary'}
       >
         Forgot password?

@@ -1,9 +1,8 @@
 import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
-import { Route } from '@/routes';
 
 export const config = {
-  matcher: [Route.AUCTIONS, Route.PROFILE],
+  matcher: ['/auctions/:path*', '/profile/:path*'],
 };
 
 export default withAuth(

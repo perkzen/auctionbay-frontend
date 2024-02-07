@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Route } from '@/routes';
+import { PublicRoute } from '@/routes';
 import AuctionsImage from '@/assets/auctions.svg';
 import AuctionBayLogo from '@/assets/auctionbay-logo.svg';
 
@@ -19,7 +19,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           'mx-auto my-2 flex max-w-[448px] flex-col rounded-[32px] bg-white px-8 py-16 xl:m-2'
         }
       >
-        <Link href={Route.HOME}>
+        <Link href={PublicRoute.HOME}>
           <Image
             src={AuctionBayLogo}
             alt={'AuctionBay Logo'}
