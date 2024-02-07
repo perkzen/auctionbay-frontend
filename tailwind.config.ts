@@ -42,6 +42,9 @@ const config = {
           200: '#DDE9E6',
           300: '#B0BFBD',
         },
+        danger: '#FFAA98',
+        warning: '#F9FF90',
+        success: '#ADFF90',
       },
       textColor: {
         primary: '#071015',
