@@ -1,8 +1,9 @@
 import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
+import { Route } from '@/routes';
 
 export const config = {
-  matcher: ['/protected'],
+  matcher: [Route.AUCTIONS, Route.PROFILE],
 };
 
 export default withAuth(

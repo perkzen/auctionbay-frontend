@@ -25,7 +25,7 @@ const LoginForm = () => {
 
   const { mutateAsync, isLoading } = useSignIn({
     onSuccess: () => {
-      router.push(Route.HOME);
+      router.push(Route.AUCTIONS);
     },
   });
 

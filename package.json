@@ -11,8 +11,10 @@
     "format": "prettier --write 'src/**/*.{js,ts,jsx,tsx,json,css}'"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@t3-oss/env-nextjs": "^0.8.0",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
