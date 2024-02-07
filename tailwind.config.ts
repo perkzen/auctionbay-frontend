@@ -22,7 +22,10 @@ const config = {
         '3.5xl': ['2rem', '2.4rem'],
         '6.5xl': ['4rem', '4.8rem'],
       },
-
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '6.25rem',
+      },
       colors: {
         primary: {
           100: '#F4FF47',
