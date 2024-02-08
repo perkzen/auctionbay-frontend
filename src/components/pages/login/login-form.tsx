@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useSignIn } from '@/hooks/auth';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { PublicRoute } from '@/routes';
+import { PrivateRoute, PublicRoute } from '@/routes';
 
 const LoginForm = () => {
   const {
@@ -23,9 +23,9 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const { mutateAsync, isLoading } = useSignIn({
+  const { mutateAsync, isPending } = useSignIn({
     onSuccess: () => {
-      router.push(PublicRoute.AUCTIONS);
+      router.push(PrivateRoute.AUCTIONS);
     },
   });
 
@@ -72,7 +72,7 @@ const LoginForm = () => {
         Forgot password?
       </Link>
 
-      <Button className={'mt-4'} disabled={isLoading}>
+      <Button className={'mt-4'} disabled={isPending}>
         Login
       </Button>
     </form>

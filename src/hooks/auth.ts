@@ -1,8 +1,7 @@
-import { useMutation, UseMutationOptions } from 'react-query';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { SignUpData } from '@/libs/validators/signup-validator';
 import { signUp } from '@/api/auth';
 import { signIn } from 'next-auth/react';
-import { PublicRoute } from '@/routes';
 import { LoginData } from '@/libs/validators/login-validator';
 
 export const SIGN_UP_KEY = 'SIGN_UP';
