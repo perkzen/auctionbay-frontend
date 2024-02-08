@@ -47,7 +47,7 @@ const NavigationTab = () => {
               width={24}
               height={24}
             />
-            Auctions
+            <span className={'hidden sm:block'}>Auctions</span>
           </TabsTrigger>
         </Link>
         <Link href={PrivateRoute.PROFILE}>
@@ -62,7 +62,7 @@ const NavigationTab = () => {
               width={24}
               height={24}
             />
-            Profile
+            <span className={'hidden sm:block'}>Profile</span>
           </TabsTrigger>
         </Link>
       </TabsList>

@@ -12,14 +12,16 @@ const Navbar = async () => {
 
   return (
     <div
-      className={'mx-4 my-5 flex flex-row items-center justify-between sm:mx-8'}
+      className={
+        'm-4 flex flex-row items-center justify-between sm:mx-8 sm:my-5'
+      }
     >
       <div className={'flex h-full flex-row gap-8'}>
-        <Link href={PublicRoute.HOME}>
+        <Link href={PublicRoute.HOME} className={'h-fit'}>
           <Image
             src={AuctionBayLogo}
             alt={'AuctionBay Logo'}
-            className={' h-12 w-12 sm:h-16 md:w-16'}
+            className={'h-12 w-12 sm:h-16 md:w-16'}
             priority
           />
         </Link>
