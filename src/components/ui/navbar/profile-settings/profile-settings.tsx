@@ -13,12 +13,24 @@ import {
   ProfileSettingsValidator,
 } from '@/libs/validators/profile-settings-validator';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetUser } from '@/hooks/user';
+import { useGetUser, useUpdateUser } from '@/hooks/user';
+import LoadingProvider from '@/components/providers/loading-provider';
+import { toast } from 'sonner';
 
 const ProfileSettings = () => {
-  const { data } = useGetUser();
+  const { data, isLoading, refetch: refetchUser } = useGetUser();
+  const { mutateAsync, isPending } = useUpdateUser({
+    onSuccess: async () => {
+      await refetchUser();
+    },
+  });
 
-  const { register, reset } = useForm<ProfileSettingsData>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm<ProfileSettingsData>({
     resolver: zodResolver(ProfileSettingsValidator),
   });
 
@@ -30,25 +42,60 @@ const ProfileSettings = () => {
     });
   }, [data, reset]);
 
+  const onSubmit = (data: ProfileSettingsData) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Updating profile...',
+      success: 'Profile updated!',
+      error: 'Failed to update profile',
+    });
+  };
+
   return (
     <>
       <DialogHeader>
         <DialogTitle>Profile Settings</DialogTitle>
       </DialogHeader>
-      <form className={'flex flex-col gap-4'}>
-        <div className={'flex gap-4'}>
-          <Input {...register('firstname')} id={'firstname'} label={'Name'} />
-          <Input {...register('lastname')} id={'lastname'} label={'Surname'} />
-        </div>
-        <Input {...register('email')} id={'email'} label={'E-mail'} />
-        <div>Change password</div>
-        <div>Change profile picture</div>
-      </form>
+      <LoadingProvider isLoading={isLoading}>
+        <form
+          className={'flex flex-col gap-4'}
+          id={'profile-settings'}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className={'flex gap-4'}>
+            <Input
+              {...register('firstname')}
+              id={'firstname'}
+              label={'Name'}
+              disabled={isLoading}
+            />
+            <Input
+              {...register('lastname')}
+              id={'lastname'}
+              label={'Surname'}
+              disabled={isLoading}
+            />
+          </div>
+          <Input
+            {...register('email')}
+            id={'email'}
+            label={'E-mail'}
+            disabled={isLoading}
+          />
+          <div>Change password</div>
+          <div>Change profile picture</div>
+        </form>
+      </LoadingProvider>
       <DialogFooter className={'mt-4'}>
         <DialogClose asChild>
           <Button variant={'tertiary'}>Cancel</Button>
         </DialogClose>
-        <Button>Save changes</Button>
+        <Button
+          form={'profile-settings'}
+          type={'submit'}
+          disabled={!isDirty || isPending}
+        >
+          Save changes
+        </Button>
       </DialogFooter>
     </>
   );

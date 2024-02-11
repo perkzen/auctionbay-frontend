@@ -34,7 +34,6 @@ const LoginForm = () => {
       loading: 'Logging in...',
       success: 'Logged in successfully!',
       error: 'Invalid credentials!',
-      position: 'top-center',
     });
   };
 

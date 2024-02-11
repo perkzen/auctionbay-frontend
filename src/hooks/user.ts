@@ -1,7 +1,12 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { getUser } from '@/api/user';
+import {
+  useMutation,
+  UseMutationOptions,
+  useQuery,
+  UseQueryOptions,
+} from '@tanstack/react-query';
+import { getUser, updateUser } from '@/api/user';
 import { AxiosError } from 'axios';
-import { User } from '@/models/user';
+import { UpdateProfile, User } from '@/models/user';
 
 export const USER_KEY = 'user';
 
@@ -11,6 +16,18 @@ export const useGetUser = (
   return useQuery({
     queryKey: [USER_KEY],
     queryFn: getUser,
+    ...opts,
+  });
+};
+
+export const UPDATE_USER_KEY = 'update-user';
+
+export const useUpdateUser = (
+  opts?: UseMutationOptions<UpdateProfile, AxiosError, UpdateProfile, unknown>
+) => {
+  return useMutation({
+    mutationKey: [UPDATE_USER_KEY],
+    mutationFn: updateUser,
     ...opts,
   });
 };
