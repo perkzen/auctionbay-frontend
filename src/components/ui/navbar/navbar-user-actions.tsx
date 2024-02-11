@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import BellIcon from '@/assets/icons/Notifications-none.svg';
 import AddIcon from '@/assets/icons/Add.svg';
-import ProfileSettingsTrigger from '@/components/ui/navbar/profile-settings/profile-settings-trigger';
 import SignOutPopover from '@/components/ui/navbar/sign-out-popover';
 
 const NavbarUserActions = () => {

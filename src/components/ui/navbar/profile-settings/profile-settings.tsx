@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {
   DialogClose,
-  DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
