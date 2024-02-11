@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import BellIcon from '@/assets/icons/Notifications-none.svg';
 import AddIcon from '@/assets/icons/Add.svg';
-import ProfileSettingsTrigger from '@/components/ui/navbar/profile-settings-trigger';
+import ProfileSettingsTrigger from '@/components/ui/navbar/profile-settings/profile-settings-trigger';
+import SignOutPopover from '@/components/ui/navbar/sign-out-popover';
 
 const NavbarUserActions = () => {
   return (
@@ -18,7 +19,7 @@ const NavbarUserActions = () => {
       <Button size={'fit'} className={'rounded-5xl p-2 sm:p-4'}>
         <Image src={AddIcon} alt={'Add'} width={24} height={24} />
       </Button>
-      <ProfileSettingsTrigger />
+      <SignOutPopover />
     </div>
   );
 };
