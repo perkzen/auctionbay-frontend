@@ -12,7 +12,7 @@ interface AuctionCardProps {
 
 const AuctionCard = ({ auction }: AuctionCardProps) => {
   return (
-    <Card className={'w-[216px]'}>
+    <Card className={'h-fit w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between'}>
         <BidStatusTag status={BidStatus.OUTBID} size={'sm'} />
         <TimeTag endsAt={new Date()} size={'sm'} />
@@ -28,9 +28,9 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
           <Image
             src={auction.imageUrl}
             alt={'image'}
-            fill={true}
-            objectFit={'cover'}
-            className={'rounded-2xl p-1'}
+            fill
+            sizes={'100%'}
+            className={'rounded-2xl object-cover p-1'}
           />
         </div>
       </CardContent>

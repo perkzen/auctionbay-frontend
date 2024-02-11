@@ -22,6 +22,8 @@ const Navbar = async () => {
             src={AuctionBayLogo}
             alt={'AuctionBay Logo'}
             className={'h-12 w-12 sm:h-16 md:w-16'}
+            width={64}
+            height={64}
             priority
           />
         </Link>

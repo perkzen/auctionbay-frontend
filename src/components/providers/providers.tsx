@@ -22,7 +22,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         {children}
-        <ToastProvider position={'bottom-right'} richColors />
+        <ToastProvider position={'top-center'} richColors />
       </QueryClientProvider>
     </SessionProvider>
   );

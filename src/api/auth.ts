@@ -3,7 +3,7 @@ import { api } from '@/api/axios';
 import { Endpoint } from '@/api/endpoints';
 import { LoginData } from '@/libs/validators/login-validator';
 import { AxiosResponse } from 'axios';
-import { User } from '@/models/user';
+import { LoginResponse } from '@/models/user';
 
 export const signUp = async (data: SignUpData) => {
   const res = await api.post(Endpoint.SIGNUP, data);
@@ -14,7 +14,7 @@ export const signUp = async (data: SignUpData) => {
 };
 
 export const login = async (data: LoginData) => {
-  return (await api.post(Endpoint.LOGIN, data)) as AxiosResponse<User>;
+  return (await api.post(Endpoint.LOGIN, data)) as AxiosResponse<LoginResponse>;
 };
 
 export const refreshTokens = async (refreshToken: string) => {

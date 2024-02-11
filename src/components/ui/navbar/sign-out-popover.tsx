@@ -1,16 +1,24 @@
 'use client';
 import React from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import PersonIcon from '@/assets/icons/Person-white.svg';
-import SettingsIcon from '@/assets/icons/Settings.svg';
 import { signOut } from 'next-auth/react';
+import ProfileSettingsTrigger from '@/components/ui/navbar/profile-settings/profile-settings-trigger';
 
-const ProfileSettingsTrigger = () => {
+const SignOutPopover = () => {
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Popover>
+      <PopoverTrigger asChild>
         <Button
           variant={'secondary'}
           size={'fit'}
@@ -18,24 +26,21 @@ const ProfileSettingsTrigger = () => {
         >
           <Image src={PersonIcon} alt={'Avatar'} width={24} height={24} />
         </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[204px]">
+      </PopoverTrigger>
+      <PopoverContent className={'sm:max-w-[204px]'}>
         <div className="flex flex-col items-center gap-4">
-          <div className={'flex flex-row items-center gap-2'}>
-            <Image src={SettingsIcon} alt={'Settings'} width={24} height={24} />
-            <span>Profile settings</span>
-          </div>
+          <ProfileSettingsTrigger />
           <Button
             variant={'outline'}
             className={'w-full'}
-            onClick={() => signOut()}
+            onClick={handleSignOut}
           >
             Log out
           </Button>
         </div>
-      </DialogContent>
-    </Dialog>
+      </PopoverContent>
+    </Popover>
   );
 };
 
-export default ProfileSettingsTrigger;
+export default SignOutPopover;

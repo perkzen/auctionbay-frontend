@@ -3,11 +3,10 @@ import React from 'react';
 import { useAuctionList } from '@/hooks/auction';
 import AuctionCard from '@/components/pages/auctions/auction-card';
 import EmptyAuctionsList from '@/components/pages/auctions/empty-auctions-list';
-import { Auction } from '@/models/auction';
 
 const AuctionsList = () => {
-  //const { data } = useAuctionList();
-  const data = [] as Auction[];
+  const { data } = useAuctionList();
+
   return (
     <>
       {data?.length === 0 ? (

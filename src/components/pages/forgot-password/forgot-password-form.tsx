@@ -30,17 +30,13 @@ const ForgotPasswordForm = () => {
         className={'flex w-[384px] flex-col gap-4'}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className={'flex flex-col gap-2'}>
-          <label className={'font-light'} htmlFor={'email'}>
-            E-mail
-          </label>
-          <Input
-            {...register('email')}
-            placeholder={'john.doe@mail.com'}
-            id={'email'}
-            error={errors.email?.message}
-          />
-        </div>
+        <Input
+          {...register('email')}
+          placeholder={'john.doe@mail.com'}
+          id={'email'}
+          label={'E-mail'}
+          error={errors.email?.message}
+        />
         <Button className={'mt-4'}>Reset password</Button>
       </form>
 
