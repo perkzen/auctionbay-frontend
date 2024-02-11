@@ -43,28 +43,22 @@ const LoginForm = () => {
       className={'flex w-[384px] flex-col gap-4'}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className={'flex flex-col gap-2'}>
-        <label className={'font-light'} htmlFor={'email'}>
-          E-mail
-        </label>
-        <Input
-          {...register('email')}
-          placeholder={'john.doe@mail.com'}
-          id={'email'}
-          error={errors.email?.message}
-        />
-      </div>
-      <div className={'flex flex-col gap-2'}>
-        <label className={'font-light'} htmlFor={'password'}>
-          Password
-        </label>
-        <PasswordInput
-          {...register('password')}
-          id={'password'}
-          placeholder={'********'}
-          error={errors.password?.message}
-        />
-      </div>
+      <Input
+        {...register('email')}
+        placeholder={'john.doe@mail.com'}
+        id={'email'}
+        label={'E-mail'}
+        error={errors.email?.message}
+      />
+
+      <PasswordInput
+        {...register('password')}
+        id={'password'}
+        label={'Password'}
+        placeholder={'********'}
+        error={errors.password?.message}
+      />
+
       <Link
         href={PublicRoute.FORGOT_PASSWORD}
         className={'ml-auto text-xs font-light text-tertiary'}

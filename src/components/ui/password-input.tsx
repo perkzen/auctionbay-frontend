@@ -1,22 +1,14 @@
-import { forwardRef, InputHTMLAttributes, useState } from 'react';
-import { Input } from '@/components/ui/input';
+import { forwardRef, useState } from 'react';
+import { Input, InputProps } from '@/components/ui/input';
 import EyeIcon from '@/assets/icons/Eye.svg';
 import Image from 'next/image';
-import * as React from 'react';
+import { cn } from '@/libs/utils';
 
-interface PasswordInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  error?: string;
-}
+interface PasswordInputProps extends Omit<InputProps, 'type'> {}
 
 const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   (props, ref) => {
     const [showPassword, setShowPassword] = useState(false);
-    const { error, ...rest } = props;
-
-    const errorClass = props.error
-      ? 'border-red-500 focus:border-red-500 focus-visible:border-red-500'
-      : '';
 
     const onTogglePassword = () => {
       setShowPassword((prev) => !prev);
@@ -26,14 +18,17 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
       <>
         <div className={'relative'}>
           <Input
-            {...rest}
+            {...props}
             type={showPassword ? 'text' : 'password'}
             ref={ref}
-            className={error && errorClass}
           />
           <button
             type="button"
-            className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-4"
+            className={cn(
+              'absolute right-0 top-3  flex cursor-pointer items-center pr-4',
+              props.label && '-bottom-6 top-0',
+              props.error && props.label && '-top-4'
+            )}
             onClick={onTogglePassword}
           >
             <Image
@@ -44,11 +39,6 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             />
           </button>
         </div>
-        {props.error && (
-          <small className={'text-sm font-light text-red-500'}>
-            {props.error}
-          </small>
-        )}
       </>
     );
   }

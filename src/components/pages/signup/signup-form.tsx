@@ -40,62 +40,47 @@ const SignupForm = () => {
   return (
     <form className={'flex flex-col gap-4'} onSubmit={handleSubmit(onSubmit)}>
       <div className={'flex flex-row gap-4'}>
-        <div className={'flex flex-col gap-2'}>
-          <label className={'font-light'} htmlFor={'firstname'}>
-            Name
-          </label>
-          <Input
-            {...register('firstname')}
-            placeholder={'Joe'}
-            id={'firstname'}
-            error={errors.firstname?.message}
-          />
-        </div>
-        <div className={'flex flex-col gap-2'}>
-          <label className={'font-light'} htmlFor={'firstname'}>
-            Surname
-          </label>
-          <Input
-            {...register('lastname')}
-            placeholder={'Doe'}
-            id={'lastname'}
-            error={errors.lastname?.message}
-          />
-        </div>
-      </div>
-      <div className={'flex flex-col gap-2'}>
-        <label className={'font-light'} htmlFor={'email'}>
-          E-mail
-        </label>
         <Input
-          {...register('email')}
-          placeholder={'john.doe@mail.com'}
-          id={'email'}
-          error={errors.email?.message}
+          {...register('firstname')}
+          placeholder={'Joe'}
+          id={'firstname'}
+          label={'Name'}
+          error={errors.firstname?.message}
+        />
+
+        <Input
+          {...register('lastname')}
+          placeholder={'Doe'}
+          id={'lastname'}
+          label={'Surname'}
+          error={errors.lastname?.message}
         />
       </div>
-      <div className={'flex flex-col gap-2'}>
-        <label className={'font-light'} htmlFor={'password'}>
-          Password
-        </label>
-        <PasswordInput
-          {...register('password')}
-          id={'password'}
-          placeholder={'********'}
-          error={errors.password?.message}
-        />
-      </div>
-      <div className={'flex flex-col gap-2'}>
-        <label className={'font-light'} htmlFor={'repeatPassword'}>
-          Repeat password
-        </label>
-        <PasswordInput
-          {...register('repeatPassword')}
-          id={'repeatPassword'}
-          placeholder={'********'}
-          error={errors.repeatPassword?.message}
-        />
-      </div>
+
+      <Input
+        {...register('email')}
+        placeholder={'john.doe@mail.com'}
+        id={'email'}
+        label={'E-mail'}
+        error={errors.email?.message}
+      />
+
+      <PasswordInput
+        {...register('password')}
+        id={'password'}
+        placeholder={'********'}
+        label={'Password'}
+        error={errors.password?.message}
+      />
+
+      <PasswordInput
+        {...register('repeatPassword')}
+        id={'repeatPassword'}
+        placeholder={'********'}
+        label={'Repeat password'}
+        error={errors.repeatPassword?.message}
+      />
+
       <Button className={'mt-4'}>Sign up</Button>
     </form>
   );
