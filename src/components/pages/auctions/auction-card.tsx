@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import BidStatusTag from '@/components/ui/bid-status-tag';
 import { BidStatus } from '@/models/bid';
@@ -13,7 +12,7 @@ interface AuctionCardProps {
 const AuctionCard = ({ auction }: AuctionCardProps) => {
   return (
     <Card className={'h-fit w-[216px]'}>
-      <CardHeader className={'flex flex-row justify-between'}>
+      <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
         <BidStatusTag status={BidStatus.OUTBID} size={'sm'} />
         <TimeTag endsAt={new Date()} size={'sm'} />
       </CardHeader>
