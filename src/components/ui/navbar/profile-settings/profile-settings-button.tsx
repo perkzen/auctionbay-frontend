@@ -2,10 +2,11 @@
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import Image from 'next/image';
 import SettingsIcon from '@/assets/icons/Settings.svg';
-import ProfileSettings from '@/components/ui/navbar/profile-settings/profile-settings';
 import { Button } from '@/components/ui/button';
+import { SettingsViewProvider } from '@/components/providers/settings-view-provider';
+import ProfileSettings from '@/components/ui/navbar/profile-settings/profile-settings';
 
-const ProfileSettingsTrigger = () => {
+const ProfileSettingsButton = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -15,10 +16,12 @@ const ProfileSettingsTrigger = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className={'sm:max-w-[533px]'}>
-        <ProfileSettings />
+        <SettingsViewProvider>
+          <ProfileSettings />
+        </SettingsViewProvider>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default ProfileSettingsTrigger;
+export default ProfileSettingsButton;

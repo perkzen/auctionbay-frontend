@@ -12,3 +12,8 @@ export interface LoginResponse extends User {
 }
 
 export interface UpdateProfile extends Omit<User, 'id' | 'imageUrl'> {}
+
+export interface UpdatePassword {
+  oldPassword: string;
+  newPassword: string;
+}

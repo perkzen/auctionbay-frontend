@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const strongPassword = () =>
+export const strongPassword = () =>
   z
     .string()
     .min(8)
