@@ -1,5 +1,5 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react';
-import { Input, InputProps } from '@/components/ui/input';
+import { Input } from '@/components/ui/input';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/libs/utils';
 
