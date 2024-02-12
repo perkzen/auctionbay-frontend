@@ -1,7 +1,7 @@
 import { Endpoint } from '@/api/endpoints';
 import { api } from '@/api/axios';
 import { AxiosResponse } from 'axios';
-import { UpdateProfile, User } from '@/models/user';
+import { UpdatePassword, UpdateProfile, User } from '@/models/user';
 
 export const getUser = async () => {
   const res = (await api.get(`${Endpoint.USERS}/me`)) as AxiosResponse<User>;
@@ -13,5 +13,13 @@ export const updateUser = async (data: UpdateProfile) => {
     `${Endpoint.USERS}/me`,
     data
   )) as AxiosResponse<UpdateProfile>;
+  return res.data;
+};
+
+export const updatePassword = async (data: UpdatePassword) => {
+  const res = (await api.put(
+    `${Endpoint.USERS}/me/update-password`,
+    data
+  )) as AxiosResponse<void>;
   return res.data;
 };
