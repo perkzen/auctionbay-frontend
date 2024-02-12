@@ -10,6 +10,7 @@ import React, {
 } from 'react';
 import ProfileSettingsForm from '@/components/ui/navbar/profile-settings/profile-settings-form';
 import ChangePasswordForm from '@/components/ui/navbar/profile-settings/change-password-form';
+import ChangeProfilePictureForm from '@/components/ui/navbar/profile-settings/change-profile-picture-form';
 
 export enum SettingsType {
   PROFILE_SETTINGS = 'PROFILE_SETTINGS',
@@ -32,11 +33,8 @@ const ModalSettingsContext = createContext<ModalSettingsContextType>({
 const Component: Record<SettingsType, FC> = {
   [SettingsType.PROFILE_SETTINGS]: ProfileSettingsForm,
   [SettingsType.CHANGE_PASSWORD]: ChangePasswordForm,
-  [SettingsType.CHANGE_PROFILE_PICTURE]: () => (
-    <div>Change Profile Picture</div>
-  ),
+  [SettingsType.CHANGE_PROFILE_PICTURE]: ChangeProfilePictureForm,
 };
-
 export const SettingsViewProvider = ({ children }: PropsWithChildren) => {
   const [view, setView] = useState<SettingsType>(SettingsType.PROFILE_SETTINGS);
 

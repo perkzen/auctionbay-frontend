@@ -1,15 +1,13 @@
 'use client';
-import React, { useState } from 'react';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import PersonIcon from '@/assets/icons/Person-white.svg';
 import { signOut } from 'next-auth/react';
 import ProfileSettingsButton from '@/components/ui/navbar/profile-settings/profile-settings-button';
+import UserAvatar from '@/components/ui/navbar/user-avatar';
 
 const SignOutPopover = () => {
   const handleSignOut = async () => {
@@ -19,12 +17,8 @@ const SignOutPopover = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant={'secondary'}
-          size={'fit'}
-          className={'rounded-5xl p-2 sm:p-4'}
-        >
-          <Image src={PersonIcon} alt={'Avatar'} width={24} height={24} />
+        <Button variant={'secondary'} size={'fit'} className={'rounded-5xl'}>
+          <UserAvatar />
         </Button>
       </PopoverTrigger>
       <PopoverContent className={'sm:max-w-[204px]'}>
