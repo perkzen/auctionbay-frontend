@@ -4,7 +4,12 @@ import {
   useQuery,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import { getUser, updatePassword, updateUser } from '@/api/user';
+import {
+  getUser,
+  updatePassword,
+  updateProfilePicture,
+  updateUser,
+} from '@/api/user';
 import { AxiosError } from 'axios';
 import { UpdateProfile, User } from '@/models/user';
 
@@ -40,6 +45,18 @@ export const useUpdatePassword = (
   return useMutation({
     mutationKey: [UPDATE_PASSWORD_KEY],
     mutationFn: updatePassword,
+    ...opts,
+  });
+};
+
+export const UPDATE_PROFILE_PICTURE_KEY = 'update-profile-picture';
+
+export const useUpdateProfilePicture = (
+  opts?: UseMutationOptions<void, AxiosError, unknown, unknown>
+) => {
+  return useMutation({
+    mutationKey: [UPDATE_PROFILE_PICTURE_KEY],
+    mutationFn: updateProfilePicture,
     ...opts,
   });
 };

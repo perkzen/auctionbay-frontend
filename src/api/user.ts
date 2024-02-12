@@ -23,3 +23,19 @@ export const updatePassword = async (data: UpdatePassword) => {
   )) as AxiosResponse<void>;
   return res.data;
 };
+
+export const updateProfilePicture = async (image: File) => {
+  const formData = new FormData();
+  formData.append('image', image);
+
+  const res = (await api.put(
+    `${Endpoint.USERS}/me/update-profile-picture`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  )) as AxiosResponse<void>;
+  return res.data;
+};
