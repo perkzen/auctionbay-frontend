@@ -10,7 +10,7 @@ enum AuctionFilterType {
   WON = 'won',
 }
 
-const AuctionFilter = () => {
+const AuctionsTabList = () => {
   return (
     <Tabs
       defaultValue={AuctionFilterType.MY_AUCTIONS}
@@ -49,4 +49,4 @@ const AuctionFilter = () => {
   );
 };
 
-export default AuctionFilter;
+export default AuctionsTabList;

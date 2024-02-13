@@ -1,10 +1,11 @@
 'use client';
 import { useGetUser } from '@/hooks/user';
 import StatCard from '@/components/pages/profile/stat-card';
-import AuctionFilter from '@/components/pages/profile/auction-filter';
+import AuctionsTabList from '@/components/pages/profile/auctions-tab-list';
 
 const Profile = () => {
   const { data } = useGetUser();
+
   return (
     <>
       <h1 className={'mb-4 text-3.5xl font-bold'}>
@@ -26,7 +27,7 @@ const Profile = () => {
         />
       </div>
       <div className={'flex flex-1'}>
-        <AuctionFilter />
+        <AuctionsTabList />
       </div>
     </>
   );
