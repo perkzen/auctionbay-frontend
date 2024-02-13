@@ -2,10 +2,10 @@ import AuctionBayLogo from '@/assets/auctionbay-logo.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PublicRoute } from '@/routes';
-import NavigationTab from '@/components/ui/navbar/navigation-tab';
 import { getServerAuthSession } from '@/server/auth';
 import NavbarUserActions from '@/components/ui/navbar/navbar-user-actions';
 import NavbarAuthActions from '@/components/ui/navbar/navbar-auth-actions';
+import NavigationTabs from '@/components/ui/navbar/navigation-tabs';
 
 const Navbar = async () => {
   const session = await getServerAuthSession();
@@ -16,7 +16,7 @@ const Navbar = async () => {
         'm-4 flex flex-row items-center justify-between sm:mx-8 sm:my-5'
       }
     >
-      <div className={'flex h-full flex-row gap-8'}>
+      <div className={'flex h-full flex-row gap-2 sm:gap-8'}>
         <Link href={PublicRoute.HOME} className={'h-fit'}>
           <Image
             src={AuctionBayLogo}
@@ -27,7 +27,7 @@ const Navbar = async () => {
             priority
           />
         </Link>
-        <NavigationTab />
+        <NavigationTabs />
       </div>
       {session ? <NavbarUserActions /> : <NavbarAuthActions />}
     </div>

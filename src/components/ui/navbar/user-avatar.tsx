@@ -20,7 +20,7 @@ const UserAvatar = ({ className, image }: UserAvatarProps) => {
   }, [image]);
 
   return (
-    <Avatar className={cn('h-[56px] w-[56px]', className)}>
+    <Avatar className={cn('h-10 w-10 sm:h-[56px] sm:w-[56px]', className)}>
       {data && (
         <>
           <AvatarImage

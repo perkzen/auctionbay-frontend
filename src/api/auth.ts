@@ -6,11 +6,7 @@ import { AxiosResponse } from 'axios';
 import { LoginResponse } from '@/models/user';
 
 export const signUp = async (data: SignUpData) => {
-  const res = await api.post(Endpoint.SIGNUP, data);
-
-  if (res.status !== 201) {
-    throw new Error('Failed to sign up');
-  }
+  await api.post(Endpoint.SIGNUP, data);
 };
 
 export const login = async (data: LoginData) => {

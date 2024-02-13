@@ -1,4 +1,3 @@
-import React from 'react';
 import AuctionsList from '@/components/pages/auctions/auctions-list';
 import {
   dehydrate,
