@@ -2,8 +2,6 @@
 import Image from 'next/image';
 import AuctionsDesktopImage from '@/assets/auctions-desktop.svg';
 import AuctionsMobileImage from '@/assets/auctions-mobile.svg';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
 import LinkButton from '@/components/ui/link-button';
 
