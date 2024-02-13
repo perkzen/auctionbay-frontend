@@ -11,9 +11,10 @@ const LinkTab = ({ children, href, isActive }: LinkTabProps) => {
   return (
     <LinkButton
       variant={isActive ? 'secondary' : 'ghost'}
+      size={'fit'}
       href={href}
       className={
-        'flex h-full w-fit items-center justify-center whitespace-nowrap rounded-4xl p-2 font-medium transition-all sm:p-4'
+        'flex h-full items-center justify-center whitespace-nowrap rounded-4xl p-2 font-medium transition-all sm:p-4'
       }
     >
       {children}

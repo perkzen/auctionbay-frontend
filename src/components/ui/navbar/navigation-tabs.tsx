@@ -31,7 +31,7 @@ const NavigationTabs = () => {
         <Image
           src={isAuctions ? HomeWhiteSvg : HomeSvg}
           alt={'Auctions'}
-          className={'mr-1'}
+          className={'m-0 sm:mr-1'}
           width={24}
           height={24}
         />
@@ -41,7 +41,7 @@ const NavigationTabs = () => {
         <Image
           src={isProfile ? PersonWhiteSvg : PersonSvg}
           alt={'Profile'}
-          className={'mr-1'}
+          className={'m-0 sm:mr-1'}
           width={24}
           height={24}
         />
