@@ -5,12 +5,13 @@ import AuctionsMobileImage from '@/assets/auctions-mobile.svg';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
+import LinkButton from '@/components/ui/link-button';
 
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col items-center  overflow-auto">
       <div className={'mt-16 flex w-full flex-col gap-2 text-center md:mt-24'}>
-        <h1 className="sm:text-6.5xl text-3.5xl font-bold">
+        <h1 className="text-3.5xl font-bold sm:text-6.5xl">
           E-auctions made <br className={'visible md:hidden'} /> easy!
         </h1>
         <p className={'font-light'}>
@@ -19,9 +20,9 @@ export default function Home() {
           product you <br className={'visible sm:hidden'} /> want!
         </p>
       </div>
-      <Link href={PrivateRoute.AUCTIONS}>
-        <Button className={'mt-4 sm:mt-8'}>Start bidding</Button>
-      </Link>
+      <LinkButton href={PrivateRoute.AUCTIONS} className={'mt-4 sm:mt-8'}>
+        Start bidding
+      </LinkButton>
       <Image
         src={AuctionsDesktopImage}
         alt={'auctions'}
