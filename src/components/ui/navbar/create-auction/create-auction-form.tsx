@@ -8,9 +8,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import ImageUpload from '@/components/ui/image-upload';
+import { Input } from '@/components/ui/input';
 
 interface CreateAuctionFormData {
   image: FileList | null;
+  title: string;
+  description: string;
 }
 
 const CreateAuctionForm = () => {
@@ -33,11 +36,16 @@ const CreateAuctionForm = () => {
       <DialogHeader>
         <DialogTitle>Add auction</DialogTitle>
       </DialogHeader>
-      <form>
+      <form className={'flex flex-col gap-4'} id={'create-auction'}>
         <ImageUpload
           {...register('image')}
           imageUrl={imageUrl}
           onRemove={handleRemoveImage}
+        />
+        <Input
+          label={'Title'}
+          {...register('title')}
+          placeholder={'Write item name here'}
         />
       </form>
       <DialogFooter className={'mt-4'}>
