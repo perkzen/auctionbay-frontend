@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import BellIcon from '@/assets/icons/Notifications-none.svg';
-import AddIcon from '@/assets/icons/Add.svg';
 import SignOutPopover from '@/components/ui/navbar/sign-out-popover';
+import CreateAuctionButton from '@/components/ui/navbar/create-auction/create-auction-button';
 
 const NavbarUserActions = () => {
   return (
@@ -15,9 +15,7 @@ const NavbarUserActions = () => {
       >
         <Image src={BellIcon} alt={'Notifications'} width={24} height={24} />
       </Button>
-      <Button size={'fit'} className={'rounded-5xl p-2 sm:p-4'}>
-        <Image src={AddIcon} alt={'Add'} width={24} height={24} />
-      </Button>
+      <CreateAuctionButton />
       <SignOutPopover />
     </div>
   );
