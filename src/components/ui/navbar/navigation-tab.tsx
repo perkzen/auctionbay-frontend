@@ -10,6 +10,7 @@ import HomeWhiteSvg from '@/assets/icons/Home-white.svg';
 import PersonWhiteSvg from '@/assets/icons/Person-white.svg';
 import { usePathname } from 'next/navigation';
 
+// TODO: auto select if navigated to
 const NavigationTab = () => {
   const pathname = usePathname();
 

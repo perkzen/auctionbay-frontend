@@ -23,6 +23,7 @@ const config = {
         '2.5xl': ['1.625rem', '1.95rem'],
         '3.5xl': ['2rem', '2.4rem'],
         '6.5xl': ['4rem', '4.8rem'],
+        '7.5xl': ['5rem', '5rem'],
       },
       borderRadius: {
         '4xl': '2rem',
@@ -51,6 +52,7 @@ const config = {
       textColor: {
         primary: '#071015',
         tertiary: '#74817F',
+        accent: '#F4FF47',
       },
       backgroundColor: {
         base: '#F6F6F4',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import {
   ChangePasswordData,
@@ -25,6 +24,11 @@ const ChangePasswordForm = () => {
     reset,
     formState: { errors, isDirty },
   } = useForm<ChangePasswordData>({
+    defaultValues: {
+      currentPassword: '',
+      newPassword: '',
+      repeatPassword: '',
+    },
     resolver: zodResolver(ChangePasswordValidator),
   });
 
