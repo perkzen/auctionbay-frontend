@@ -23,7 +23,7 @@ interface CreateAuctionFormData {
 }
 
 const CreateAuctionForm = () => {
-  const { register, watch, setValue, resetField } =
+  const { register, watch, handleSubmit, setValue, resetField } =
     useForm<CreateAuctionFormData>({
       defaultValues: {
         image: null,
@@ -43,12 +43,20 @@ const CreateAuctionForm = () => {
     setValue('endDate', date);
   };
 
+  const onSubmit = (data: CreateAuctionFormData) => {
+    console.log(data);
+  };
+
   return (
     <>
       <DialogHeader>
         <DialogTitle>Add auction</DialogTitle>
       </DialogHeader>
-      <form className={'flex flex-col gap-4'} id={'create-auction'}>
+      <form
+        className={'flex flex-col gap-4'}
+        id={'create-auction'}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <ImageUpload
           {...register('image')}
           imageUrl={imageUrl}
@@ -89,9 +97,7 @@ const CreateAuctionForm = () => {
         <DialogClose asChild>
           <Button variant={'tertiary'}>Cancel</Button>
         </DialogClose>
-        <Button form={'create-auction'} type={'submit'}>
-          Save changes
-        </Button>
+        <Button form={'create-auction'}>Save changes</Button>
       </DialogFooter>
     </>
   );
