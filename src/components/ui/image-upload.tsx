@@ -17,14 +17,15 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
     const imageUrl = image ? URL.createObjectURL(image) : '';
 
     const errorClass = error
-      ? 'border-red-500 focus:border-red-500 focus-visible:border-red-500'
+      ? 'border border-red-500 focus:border-red-500 focus-visible:border-red-500'
       : '';
 
     return (
       <div>
         <div
           className={cn(
-            'relative flex h-[168px] w-full flex-col  rounded-2xl bg-base'
+            'relative flex h-[168px] w-full flex-col rounded-2xl bg-base',
+            error && errorClass
           )}
           style={{
             backgroundImage: `url(${imageUrl})`,
