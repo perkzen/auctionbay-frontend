@@ -11,7 +11,7 @@ export const getAuctionList = async () => {
 
 export const createAuction = async (data: CreateAuctionData) => {
   const formData = new FormData();
-  formData.append('image', data.image?.item(0) as Blob);
+  formData.append('image', data.fileList?.item(0) as Blob);
   formData.append('title', data.title);
   formData.append('description', data.description);
   formData.append('startingPrice', data.startingPrice.toString());
