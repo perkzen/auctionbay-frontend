@@ -17,15 +17,11 @@ const Navbar = async () => {
       }
     >
       <div className={'flex h-full flex-row gap-2 sm:gap-8'}>
-        <Link href={PublicRoute.HOME} className={'h-fit'}>
-          <Image
-            src={AuctionBayLogo}
-            alt={'AuctionBay Logo'}
-            className={'h-12 w-12 sm:h-16 md:w-16'}
-            width={64}
-            height={64}
-            priority
-          />
+        <Link
+          href={PublicRoute.HOME}
+          className={'relative h-12 w-12 sm:h-16 md:w-16'}
+        >
+          <Image src={AuctionBayLogo} alt={'AuctionBay Logo'} fill />
         </Link>
         <NavigationTabs />
       </div>

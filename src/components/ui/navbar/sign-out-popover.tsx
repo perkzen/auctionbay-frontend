@@ -25,7 +25,7 @@ const SignOutPopover = () => {
         <div className="flex flex-col items-center gap-4">
           <ProfileSettingsButton />
           <Button
-            variant={'outline'}
+            variant={'inverse'}
             className={'w-full'}
             onClick={handleSignOut}
           >

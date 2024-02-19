@@ -10,17 +10,18 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-primary-100 text-primary hover:bg-primary-200',
         secondary: 'bg-secondary-100 text-white hover:bg-secondary-200',
-        outline:
+        inverse:
           'border border-secondary-100 bg-white hover:bg-secondary-100 hover:text-white',
         tertiary: 'bg-tertiary-100 text-primary hover:bg-tertiary-200',
         ghost: 'text-primary text-base font-bold',
         link: 'text-primary text-base font-bold underline-offset-4 hover:underline',
+        outline: 'border border-tertiary-200 bg-white',
       },
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-2xl px-3',
         lg: 'h-11 rounded-2xl px-8',
-        icon: 'h-10 w-10',
+        icon: 'h-10 w-12',
         fit: 'p-0',
       },
     },

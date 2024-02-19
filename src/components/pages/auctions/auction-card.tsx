@@ -30,6 +30,7 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
             fill
             sizes={'100%'}
             className={'rounded-2xl object-cover p-1'}
+            priority
           />
         </div>
       </CardContent>

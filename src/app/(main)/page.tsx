@@ -21,12 +21,15 @@ export default function Home() {
       <LinkButton href={PrivateRoute.AUCTIONS} className={'mt-4 sm:mt-8'}>
         Start bidding
       </LinkButton>
-      <Image
-        src={AuctionsDesktopImage}
-        alt={'auctions'}
-        className={'mt-auto hidden sm:block'}
-        priority
-      />
+      <div className={'relative mt-24 hidden w-full flex-grow sm:block'}>
+        <Image
+          src={AuctionsDesktopImage}
+          alt={'auctions'}
+          className={''}
+          layout={'fill'}
+          priority
+        />
+      </div>
       <Image
         src={AuctionsMobileImage}
         alt={'auctions'}
