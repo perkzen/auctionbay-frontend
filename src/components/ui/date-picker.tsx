@@ -11,14 +11,25 @@ import TimeIcon from '@/assets/icons/Time.svg';
 import TimeGrayIcon from '@/assets/icons/Time-grey.svg';
 import Image from 'next/image';
 import { Label } from '@/components/ui/label';
+import * as React from 'react';
 
 interface DatePickerProps {
   label?: string;
   setDate: (date?: Date) => void;
   date?: Date;
+  error?: string;
 }
 
-export const DatePicker = ({ label, date, setDate }: DatePickerProps) => {
+export const DatePicker = ({
+  label,
+  error,
+  date,
+  setDate,
+}: DatePickerProps) => {
+  const errorClass = error
+    ? 'border-red-500 focus:border-red-500 focus-visible:border-red-500'
+    : '';
+
   return (
     <div className={'flex w-full flex-col'}>
       {label && <Label>{label}</Label>}
@@ -28,7 +39,8 @@ export const DatePicker = ({ label, date, setDate }: DatePickerProps) => {
             variant={'outline'}
             className={cn(
               'w-full justify-start text-left font-medium',
-              !date && 'text-muted-foreground'
+              !date && 'text-muted-foreground',
+              error && errorClass
             )}
           >
             {date ? (
@@ -55,6 +67,9 @@ export const DatePicker = ({ label, date, setDate }: DatePickerProps) => {
           />
         </PopoverContent>
       </Popover>
+      {error && (
+        <small className={'text-sm font-light text-red-500'}>{error}</small>
+      )}
     </div>
   );
 };

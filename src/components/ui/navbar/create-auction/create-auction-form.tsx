@@ -22,10 +22,9 @@ import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRef } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { isArrayTruthy } from '@/libs/utils';
 
 const defaultValues: Partial<CreateAuctionData> = {
-  image: null,
+  fileList: undefined,
   title: '',
   description: '',
   startingPrice: '',
@@ -59,10 +58,10 @@ const CreateAuctionForm = () => {
     },
   });
 
-  const isValid = isArrayTruthy(Object.values(watch()));
+  const image = watch('fileList')?.item(0);
 
   const handleRemoveImage = () => {
-    resetField('image');
+    resetField('fileList');
   };
 
   const setEndDate = (date?: Date) => {
@@ -89,9 +88,10 @@ const CreateAuctionForm = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <ImageUpload
-          {...register('image')}
-          fileList={watch('image')}
+          {...register('fileList')}
+          image={image}
           onRemove={handleRemoveImage}
+          error={errors.fileList?.message}
         />
         <Input
           label={'Title'}
@@ -124,7 +124,7 @@ const CreateAuctionForm = () => {
             label={'End date'}
             date={watch('endDate')}
             setDate={setEndDate}
-            // error={errors.endDate?.message}
+            error={errors.endDate?.message}
           />
         </div>
       </form>
@@ -134,9 +134,7 @@ const CreateAuctionForm = () => {
             Cancel
           </Button>
         </DialogClose>
-        <Button form={'create-auction'} disabled={!isValid}>
-          Save changes
-        </Button>
+        <Button form={'create-auction'}>Save changes</Button>
       </DialogFooter>
     </>
   );

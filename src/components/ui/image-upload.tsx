@@ -8,44 +8,53 @@ import Image from 'next/image';
 
 interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   onRemove: () => void;
-  fileList: FileList | null;
+  image: File | null;
+  error?: string;
 }
 
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
-  ({ fileList, onRemove, ...props }, ref) => {
-    const image = fileList?.item(0);
+  ({ image, onRemove, error, ...props }, ref) => {
     const imageUrl = image ? URL.createObjectURL(image) : '';
 
+    const errorClass = error
+      ? 'border-red-500 focus:border-red-500 focus-visible:border-red-500'
+      : '';
+
     return (
-      <div
-        className={cn(
-          'relative flex h-[168px] w-full flex-col  rounded-2xl bg-base'
-        )}
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        {!imageUrl && (
-          <FileUpload
-            {...props}
-            label={'Add image'}
-            accept={'image/*'}
-            className={'m-auto bg-base'}
-            ref={ref}
-          />
-        )}
-        {imageUrl && (
-          <Button
-            variant={'secondary'}
-            size={'icon'}
-            className={'ml-auto mr-4 mt-4'}
-            type={'button'}
-            onClick={onRemove}
-          >
-            <Image src={TrashIcon} alt={'Delete'} width={24} height={24} />
-          </Button>
+      <div>
+        <div
+          className={cn(
+            'relative flex h-[168px] w-full flex-col  rounded-2xl bg-base'
+          )}
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          {!imageUrl && (
+            <FileUpload
+              {...props}
+              label={'Add image'}
+              accept={'image/*'}
+              className={'m-auto bg-base'}
+              ref={ref}
+            />
+          )}
+          {imageUrl && (
+            <Button
+              variant={'secondary'}
+              size={'icon'}
+              className={'ml-auto mr-4 mt-4'}
+              type={'button'}
+              onClick={onRemove}
+            >
+              <Image src={TrashIcon} alt={'Delete'} width={24} height={24} />
+            </Button>
+          )}
+        </div>
+        {error && (
+          <small className={'text-sm font-light text-red-500'}>{error}</small>
         )}
       </div>
     );
