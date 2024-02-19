@@ -13,26 +13,53 @@ import { Textarea } from '@/components/ui/textarea';
 import EuroIcon from '@/assets/icons/Eur.svg';
 import Image from 'next/image';
 import { DatePicker } from '@/components/ui/date-picker';
+import {
+  CreateAuctionData,
+  CreateAuctionValidator,
+} from '@/libs/validators/create-auction-validator';
+import { AUCTION_LIST_KEY, useCreateAuction } from '@/hooks/auction';
+import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRef } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { isArrayTruthy } from '@/libs/utils';
 
-interface CreateAuctionFormData {
-  image: FileList | null;
-  title: string;
-  description: string;
-  startingPrice: number;
-  endDate: Date;
-}
+const defaultValues: Partial<CreateAuctionData> = {
+  image: null,
+  title: '',
+  description: '',
+  startingPrice: '',
+  endDate: undefined,
+};
 
 const CreateAuctionForm = () => {
-  const { register, watch, handleSubmit, setValue, resetField } =
-    useForm<CreateAuctionFormData>({
-      defaultValues: {
-        image: null,
-      },
-    });
+  const {
+    register,
+    watch,
+    handleSubmit,
+    setValue,
+    resetField,
+    formState: { errors },
+  } = useForm<CreateAuctionData>({
+    defaultValues,
+    resolver: zodResolver(CreateAuctionValidator),
+  });
 
-  const image = watch('image')?.item(0);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
-  const imageUrl = image ? URL.createObjectURL(image) : '';
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useCreateAuction({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [AUCTION_LIST_KEY],
+      });
+
+      closeBtnRef.current?.click();
+    },
+  });
+
+  const isValid = isArrayTruthy(Object.values(watch()));
 
   const handleRemoveImage = () => {
     resetField('image');
@@ -43,8 +70,12 @@ const CreateAuctionForm = () => {
     setValue('endDate', date);
   };
 
-  const onSubmit = (data: CreateAuctionFormData) => {
-    console.log(data);
+  const onSubmit = (data: CreateAuctionData) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Creating auction...',
+      success: 'Auction created!',
+      error: 'Failed to create auction',
+    });
   };
 
   return (
@@ -59,7 +90,7 @@ const CreateAuctionForm = () => {
       >
         <ImageUpload
           {...register('image')}
-          imageUrl={imageUrl}
+          fileList={watch('image')}
           onRemove={handleRemoveImage}
         />
         <Input
@@ -67,6 +98,7 @@ const CreateAuctionForm = () => {
           {...register('title')}
           placeholder={'Write item name here'}
           id={'title'}
+          error={errors.title?.message}
         />
         <Textarea
           label={'Description'}
@@ -74,6 +106,7 @@ const CreateAuctionForm = () => {
           placeholder={'Write item description here'}
           id={'description'}
           className={'h-[123px] resize-none'}
+          error={errors.description?.message}
         />
         <div className={'grid grid-cols-2 gap-4'}>
           <Input
@@ -82,6 +115,7 @@ const CreateAuctionForm = () => {
             {...register('startingPrice')}
             placeholder={'Price'}
             id={'startingPrice'}
+            error={errors.startingPrice?.message}
             trailingIcon={
               <Image src={EuroIcon} alt={'Euro'} width={16} height={16} />
             }
@@ -90,14 +124,19 @@ const CreateAuctionForm = () => {
             label={'End date'}
             date={watch('endDate')}
             setDate={setEndDate}
+            // error={errors.endDate?.message}
           />
         </div>
       </form>
       <DialogFooter className={'mt-4'}>
         <DialogClose asChild>
-          <Button variant={'tertiary'}>Cancel</Button>
+          <Button ref={closeBtnRef} variant={'tertiary'}>
+            Cancel
+          </Button>
         </DialogClose>
-        <Button form={'create-auction'}>Save changes</Button>
+        <Button form={'create-auction'} disabled={!isValid}>
+          Save changes
+        </Button>
       </DialogFooter>
     </>
   );

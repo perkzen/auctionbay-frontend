@@ -47,6 +47,7 @@ export const DatePicker = ({ label, date, setDate }: DatePickerProps) => {
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
+            disabled={[{ before: new Date() }]}
             mode="single"
             selected={date}
             onSelect={setDate}

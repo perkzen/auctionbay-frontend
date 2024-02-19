@@ -8,11 +8,14 @@ import Image from 'next/image';
 
 interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   onRemove: () => void;
-  imageUrl?: string | null;
+  fileList: FileList | null;
 }
 
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
-  ({ imageUrl, onRemove, ...props }, ref) => {
+  ({ fileList, onRemove, ...props }, ref) => {
+    const image = fileList?.item(0);
+    const imageUrl = image ? URL.createObjectURL(image) : '';
+
     return (
       <div
         className={cn(
