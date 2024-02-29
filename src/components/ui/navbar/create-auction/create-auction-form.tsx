@@ -20,7 +20,7 @@ import {
 import { AUCTION_LIST_KEY, useCreateAuction } from '@/hooks/auction';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const defaultValues: Partial<CreateAuctionData> = {
@@ -116,9 +116,7 @@ const CreateAuctionForm = () => {
             placeholder={'Price'}
             id={'startingPrice'}
             error={errors.startingPrice?.message}
-            trailingIcon={
-              <Image src={EuroIcon} alt={'Euro'} width={16} height={16} />
-            }
+            trailingIcon={<Image src={EuroIcon} alt={'Euro'} width={16} height={16} />}
           />
           <DatePicker
             label={'End date'}
