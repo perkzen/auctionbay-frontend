@@ -1,3 +1,17 @@
+export enum AuctionStatus {
+  ACTIVE = 'ACTIVE',
+  CLOSED = 'CLOSED',
+}
+
+export const AuctionStatusText = {
+  [AuctionStatus.ACTIVE]: 'In progress',
+  [AuctionStatus.CLOSED]: 'Done',
+};
+
+export const getAuctionStatusText = (status: AuctionStatus) => {
+  return AuctionStatusText[status] || status;
+};
+
 export type Auction = {
   id: string;
   title: string;
@@ -6,4 +20,5 @@ export type Auction = {
   ownerId: string;
   createdAt: string;
   startingPrice: number;
+  endsAt: string;
 };

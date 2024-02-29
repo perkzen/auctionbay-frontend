@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/libs/utils';
+import { cn, formatTimeLeft } from '@/libs/utils';
 import TimeIcon from '@/assets/icons/Time.svg';
 import Image from 'next/image';
 
@@ -20,22 +20,14 @@ const timeTagVariants = cva('flex flex-row gap-1 items-center', {
   },
 });
 
-interface TimeTagProps
-  extends Omit<VariantProps<typeof timeTagVariants>, 'variant'> {
-  endsAt: Date;
+interface TimeTagProps extends Omit<VariantProps<typeof timeTagVariants>, 'variant'> {
+  endsAt: string;
   className?: string;
 }
 
-const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
-const MILLISECONDS_IN_AN_HOUR = 60 * 60 * 1000;
-
 const TimeTag = ({ size, endsAt, className }: TimeTagProps) => {
-  const now = Date.now();
-  const timeLeft = endsAt.getTime() - now;
-  const variant = timeLeft <= MILLISECONDS_IN_A_DAY ? 'closing' : null;
-
-  const nonNegativeTimeLeft = Math.max(0, timeLeft);
-  const hoursLeft = Math.floor(nonNegativeTimeLeft / MILLISECONDS_IN_AN_HOUR);
+  const timeLeft = formatTimeLeft(endsAt);
+  const containsHours = timeLeft.includes('h');
 
   return (
     <div
@@ -43,11 +35,11 @@ const TimeTag = ({ size, endsAt, className }: TimeTagProps) => {
         timeTagVariants({
           size,
           className,
-          variant: variant,
+          variant: containsHours ? 'closing' : undefined,
         })
       )}
     >
-      <span>{hoursLeft}h</span>
+      <span>{timeLeft}</span>
       <Image src={TimeIcon} alt={'Time'} width={12} height={12} />
     </div>
   );
