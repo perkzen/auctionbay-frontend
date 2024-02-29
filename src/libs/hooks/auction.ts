@@ -1,4 +1,10 @@
-import { createAuction, getAuctionList } from '@/libs/api/auctions';
+import {
+  createAuction,
+  getAuctionList,
+  getUserAuctions,
+  getUserBiddingAuctions,
+  getUserWonAuctions,
+} from '@/libs/api/auctions';
 import { Auction } from '@/libs/types/auction';
 import {
   useMutation,
@@ -9,7 +15,7 @@ import {
 import { AxiosError } from 'axios';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 
-export const AUCTION_LIST_KEY = 'auctionList';
+export const AUCTION_LIST_KEY = 'auction-list';
 
 export const useAuctionList = (
   opts?: UseQueryOptions<Auction[], AxiosError, Auction[], [typeof AUCTION_LIST_KEY]>
@@ -29,6 +35,47 @@ export const useCreateAuction = (
   return useMutation({
     mutationKey: [CREATE_AUCTION_KEY],
     mutationFn: createAuction,
+    ...opts,
+  });
+};
+
+export const USER_AUCTIONS_KEY = 'user-auctions';
+
+export const useUserAuctions = (
+  opts?: UseQueryOptions<Auction[], AxiosError, Auction[], [typeof USER_AUCTIONS_KEY]>
+) => {
+  return useQuery({
+    queryKey: [USER_AUCTIONS_KEY],
+    queryFn: getUserAuctions,
+    ...opts,
+  });
+};
+
+export const USER_WON_AUCTIONS_KEY = 'user-won-auctions';
+
+export const useUserWonAuctions = (
+  opts?: UseQueryOptions<Auction[], AxiosError, Auction[], [typeof USER_WON_AUCTIONS_KEY]>
+) => {
+  return useQuery({
+    queryKey: [USER_WON_AUCTIONS_KEY],
+    queryFn: getUserWonAuctions,
+    ...opts,
+  });
+};
+
+export const USER_BIDDING_AUCTIONS_KEY = 'user-bidding-auctions';
+
+export const useUserBiddingAuctions = (
+  opts?: UseQueryOptions<
+    Auction[],
+    AxiosError,
+    Auction[],
+    [typeof USER_BIDDING_AUCTIONS_KEY]
+  >
+) => {
+  return useQuery({
+    queryKey: [USER_BIDDING_AUCTIONS_KEY],
+    queryFn: getUserBiddingAuctions,
     ...opts,
   });
 };

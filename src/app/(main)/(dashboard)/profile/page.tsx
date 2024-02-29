@@ -16,6 +16,16 @@ import {
   USER_POSTED_AUCTIONS_QUERY_KEY,
   USER_WINNING_BIDS_QUERY_KEY,
 } from '@/libs/hooks/statistics';
+import {
+  USER_AUCTIONS_KEY,
+  USER_BIDDING_AUCTIONS_KEY,
+  USER_WON_AUCTIONS_KEY,
+} from '@/libs/hooks/auction';
+import {
+  getUserAuctions,
+  getUserBiddingAuctions,
+  getUserWonAuctions,
+} from '@/libs/api/auctions';
 
 export default async function Profile() {
   const queryClient = new QueryClient();
@@ -43,6 +53,21 @@ export default async function Profile() {
   await queryClient.prefetchQuery({
     queryKey: [USER_WINNING_BIDS_QUERY_KEY],
     queryFn: getUserWinningBids,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [USER_AUCTIONS_KEY],
+    queryFn: getUserAuctions,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [USER_WON_AUCTIONS_KEY],
+    queryFn: getUserWonAuctions,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [USER_BIDDING_AUCTIONS_KEY],
+    queryFn: getUserBiddingAuctions,
   });
 
   return (

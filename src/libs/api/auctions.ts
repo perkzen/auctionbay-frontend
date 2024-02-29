@@ -28,3 +28,20 @@ export const createAuction = async (data: CreateAuctionData) => {
   })) as AxiosResponse<Auction>;
   return res.data;
 };
+
+export const getUserAuctions = async () => {
+  const res = (await api.get(`${Endpoint.AUCTIONS}/me`)) as AxiosResponse<Auction[]>;
+  return res.data;
+};
+
+export const getUserWonAuctions = async () => {
+  const res = (await api.get(`${Endpoint.AUCTIONS}/me/won`)) as AxiosResponse<Auction[]>;
+  return res.data;
+};
+
+export const getUserBiddingAuctions = async () => {
+  const res = (await api.get(`${Endpoint.AUCTIONS}/me/bidding`)) as AxiosResponse<
+    Auction[]
+  >;
+  return res.data;
+};
