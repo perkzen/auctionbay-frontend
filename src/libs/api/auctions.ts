@@ -1,7 +1,7 @@
-import { Endpoint } from '@/api/endpoints';
-import { api } from '@/api/axios';
+import { Endpoint } from '@/libs/api/endpoints';
+import { api } from '@/libs/api/axios';
 import { AxiosResponse } from 'axios';
-import { Auction } from '@/models/auction';
+import { Auction } from '@/libs/types/auction';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 
 export const getAuctionList = async () => {

@@ -1,9 +1,9 @@
 import { SignUpData } from '@/libs/validators/signup-validator';
-import { api } from '@/api/axios';
-import { Endpoint } from '@/api/endpoints';
+import { api } from '@/libs/api/axios';
+import { Endpoint } from '@/libs/api/endpoints';
 import { LoginData } from '@/libs/validators/login-validator';
 import { AxiosResponse } from 'axios';
-import { LoginResponse } from '@/models/user';
+import { LoginResponse } from '@/libs/types/user';
 
 export const signUp = async (data: SignUpData) => {
   await api.post(Endpoint.SIGNUP, data);

@@ -1,7 +1,7 @@
-import { Endpoint } from '@/api/endpoints';
-import { api } from '@/api/axios';
+import { Endpoint } from '@/libs/api/endpoints';
+import { api } from '@/libs/api/axios';
 import { AxiosResponse } from 'axios';
-import { UpdatePassword, UpdateProfile, User } from '@/models/user';
+import { UpdatePassword, UpdateProfile, User } from '@/libs/types/user';
 
 export const getUser = async () => {
   const res = (await api.get(`${Endpoint.USERS}/me`)) as AxiosResponse<User>;
@@ -28,14 +28,10 @@ export const updateProfilePicture = async (image: File) => {
   const formData = new FormData();
   formData.append('image', image);
 
-  const res = (await api.put(
-    `${Endpoint.USERS}/me/update-profile-picture`,
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }
-  )) as AxiosResponse<void>;
+  const res = (await api.put(`${Endpoint.USERS}/me/update-profile-picture`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })) as AxiosResponse<void>;
   return res.data;
 };

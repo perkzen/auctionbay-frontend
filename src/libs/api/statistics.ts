@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { api } from '@/api/axios';
-import { Endpoint } from '@/api/endpoints';
+import { api } from '@/libs/api/axios';
+import { Endpoint } from '@/libs/api/endpoints';
 
 export const getUserEarnings = async () => {
   const res = (await api.get(`${Endpoint.STATISTICS}/me/earnings`)) as AxiosResponse<{

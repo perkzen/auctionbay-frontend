@@ -1,5 +1,5 @@
 'use client';
-import { useGetUser } from '@/hooks/user';
+import { useGetUser } from '@/libs/hooks/user';
 
 const ProfileHeader = () => {
   const { data } = useGetUser();

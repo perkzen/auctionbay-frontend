@@ -9,9 +9,9 @@ import {
   updatePassword,
   updateProfilePicture,
   updateUser,
-} from '@/api/user';
+} from '@/libs/api/user';
 import { AxiosError } from 'axios';
-import { UpdateProfile, User } from '@/models/user';
+import { UpdateProfile, User } from '@/libs/types/user';
 
 export const USER_KEY = 'user';
 

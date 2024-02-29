@@ -13,7 +13,7 @@ import {
   ProfileSettingsValidator,
 } from '@/libs/validators/profile-settings-validator';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetUser, useUpdateUser } from '@/hooks/user';
+import { useGetUser, useUpdateUser } from '@/libs/hooks/user';
 import LoadingProvider from '@/components/providers/loading-provider';
 import { toast } from 'sonner';
 import {

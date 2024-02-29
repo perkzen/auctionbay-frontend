@@ -1,11 +1,7 @@
 import AuctionsList from '@/components/pages/auctions/auctions-list';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { AUCTION_LIST_KEY } from '@/hooks/auction';
-import { getAuctionList } from '@/api/auctions';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { AUCTION_LIST_KEY } from '@/libs/hooks/auction';
+import { getAuctionList } from '@/libs/api/auctions';
 
 export default async function Auctions() {
   const queryClient = new QueryClient();

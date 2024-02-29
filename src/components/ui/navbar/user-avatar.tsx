@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn, getUserInitials } from '@/libs/utils';
-import { useGetUser } from '@/hooks/user';
+import { useGetUser } from '@/libs/hooks/user';
 
 interface UserAvatarProps {
   className?: string;

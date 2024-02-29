@@ -1,5 +1,5 @@
 import NextAuth, { User } from 'next-auth';
-import { LoginResponse as BackendUser } from '@/models/user';
+import { LoginResponse as BackendUser } from '@/libs/types/user';
 
 declare module 'next-auth' {
   interface User extends BackendUser {}
