@@ -17,17 +17,11 @@ const statCardVariant = cva('flex flex-col w-full', {
 interface StatCardProps extends VariantProps<typeof statCardVariant> {
   title: string;
   info?: string;
-  value: string;
+  value: string | number;
   numberColor?: 'text-success';
 }
 
-const StatCard = ({
-  title,
-  variant,
-  value,
-  info,
-  numberColor,
-}: StatCardProps) => {
+const StatCard = ({ title, variant, value, info, numberColor }: StatCardProps) => {
   return (
     <Card
       className={cn(
@@ -41,9 +35,7 @@ const StatCard = ({
         {info && <p className={'font-light'}>{info}</p>}
       </CardHeader>
       <CardContent className={'flex flex-grow'}>
-        <div className={cn('text-7.5xl mt-auto font-bold', numberColor)}>
-          {value}
-        </div>
+        <div className={cn('mt-auto text-7.5xl font-bold', numberColor)}>{value}</div>
       </CardContent>
     </Card>
   );
