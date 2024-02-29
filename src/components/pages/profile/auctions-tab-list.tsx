@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import MyAuctions from '@/components/pages/profile/my-auctions';
-import BiddingAuctions from '@/components/pages/profile/bidding-auctions';
-import WonAuctions from '@/components/pages/profile/won-auctions';
+import MyAuctions from '@/components/pages/profile/tabs/my-auctions';
+import BiddingAuctions from '@/components/pages/profile/tabs/bidding-auctions';
+import WonAuctions from '@/components/pages/profile/tabs/won-auctions';
 
 enum AuctionFilterType {
   MY_AUCTIONS = 'my_auctions',

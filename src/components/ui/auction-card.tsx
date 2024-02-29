@@ -14,7 +14,7 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
     <Card className={'h-fit w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
         <BidStatusTag status={BidStatus.OUTBID} size={'sm'} />
-        <TimeTag endsAt={new Date()} size={'sm'} />
+        <TimeTag endsAt={auction.endsAt} size={'sm'} />
       </CardHeader>
       <CardContent className={'p-0'}>
         <div className={'p-2'}>
