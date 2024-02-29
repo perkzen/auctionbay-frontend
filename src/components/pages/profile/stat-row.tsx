@@ -5,7 +5,7 @@ import {
   useUserEarnings,
   useUserPostedAuctions,
   useUserWinningBids,
-} from '@/hooks/statistics';
+} from '@/libs/hooks/statistics';
 
 const StatRow = () => {
   const { data: earnings } = useUserEarnings();

@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { useSignIn } from '@/hooks/auth';
+import { useSignIn } from '@/libs/hooks/auth';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { PrivateRoute, PublicRoute } from '@/routes';
@@ -38,10 +38,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form
-      className={'flex w-[384px] flex-col gap-4'}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className={'flex w-[384px] flex-col gap-4'} onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register('email')}
         placeholder={'john.doe@mail.com'}

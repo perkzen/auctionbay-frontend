@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       fontSize: {
+        xxs: ['0.625rem', '0.75rem'],
         '1.5xl': ['1.438rem', '1.725rem'],
         '2.5xl': ['1.625rem', '1.95rem'],
         '3.5xl': ['2rem', '2.4rem'],

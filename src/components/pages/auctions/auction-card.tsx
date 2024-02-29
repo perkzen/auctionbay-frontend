@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import BidStatusTag from '@/components/ui/bid-status-tag';
-import { BidStatus } from '@/models/bid';
+import { BidStatus } from '@/libs/types/bid';
 import TimeTag from '@/components/ui/time-tag';
 import Image from 'next/image';
-import { Auction } from '@/models/auction';
+import { Auction } from '@/libs/types/auction';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -18,9 +18,7 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
       </CardHeader>
       <CardContent className={'p-0'}>
         <div className={'p-2'}>
-          <CardTitle className={'text-base font-light'}>
-            {auction.title}
-          </CardTitle>
+          <CardTitle className={'text-base font-light'}>{auction.title}</CardTitle>
           <div className={'mt-2'}>{auction.startingPrice} €</div>
         </div>
         <div className={'relative h-[158px] w-full'}>

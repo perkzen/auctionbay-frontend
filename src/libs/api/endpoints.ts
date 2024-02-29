@@ -5,4 +5,5 @@ export enum Endpoint {
   AUCTIONS = '/auctions',
   USERS = '/users',
   STATISTICS = '/statistics',
+  NOTIFICATIONS = '/notifications',
 }

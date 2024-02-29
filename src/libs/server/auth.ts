@@ -1,7 +1,7 @@
 import { AuthOptions, getServerSession, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PublicRoute } from '@/routes';
-import { login, refreshTokens } from '@/api/auth';
+import { login, refreshTokens } from '@/libs/api/auth';
 import { decode } from 'jsonwebtoken';
 import { JWT } from 'next-auth/jwt';
 import { env } from '@/env.mjs';

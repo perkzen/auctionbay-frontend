@@ -12,10 +12,10 @@ import {
 } from '@/components/ui/dialog';
 import PasswordInput from '@/components/ui/password-input';
 import { Button } from '@/components/ui/button';
-import { useUpdatePassword } from '@/hooks/user';
+import { useUpdatePassword } from '@/libs/hooks/user';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { ApiError } from '@/models/api-error';
+import { ApiError } from '@/libs/types/api-error';
 
 const ChangePasswordForm = () => {
   const {
@@ -84,11 +84,7 @@ const ChangePasswordForm = () => {
         <DialogClose asChild>
           <Button variant={'tertiary'}>Cancel</Button>
         </DialogClose>
-        <Button
-          form={'change-password'}
-          type={'submit'}
-          disabled={!isDirty || isPending}
-        >
+        <Button form={'change-password'} type={'submit'} disabled={!isDirty || isPending}>
           Save changes
         </Button>
       </DialogFooter>

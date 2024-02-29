@@ -17,10 +17,10 @@ import {
   CreateAuctionData,
   CreateAuctionValidator,
 } from '@/libs/validators/create-auction-validator';
-import { AUCTION_LIST_KEY, useCreateAuction } from '@/hooks/auction';
+import { AUCTION_LIST_KEY, useCreateAuction } from '@/libs/hooks/auction';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const defaultValues: Partial<CreateAuctionData> = {

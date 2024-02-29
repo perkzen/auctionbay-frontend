@@ -1,5 +1,5 @@
-import { createAuction, getAuctionList } from '@/api/auctions';
-import { Auction } from '@/models/auction';
+import { createAuction, getAuctionList } from '@/libs/api/auctions';
+import { Auction } from '@/libs/types/auction';
 import {
   useMutation,
   UseMutationOptions,
@@ -12,12 +12,7 @@ import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 export const AUCTION_LIST_KEY = 'auctionList';
 
 export const useAuctionList = (
-  opts?: UseQueryOptions<
-    Auction[],
-    AxiosError,
-    Auction[],
-    [typeof AUCTION_LIST_KEY]
-  >
+  opts?: UseQueryOptions<Auction[], AxiosError, Auction[], [typeof AUCTION_LIST_KEY]>
 ) => {
   return useQuery({
     queryKey: [AUCTION_LIST_KEY],

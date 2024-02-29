@@ -4,13 +4,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  SignUpData,
-  SignUpValidator,
-} from '@/libs/validators/signup-validator';
+import { SignUpData, SignUpValidator } from '@/libs/validators/signup-validator';
 import PasswordInput from '@/components/ui/password-input';
 import { toast } from 'sonner';
-import { useSignup } from '@/hooks/auth';
+import { useSignup } from '@/libs/hooks/auth';
 
 const SignupForm = () => {
   const {

@@ -1,6 +1,6 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { SignUpData } from '@/libs/validators/signup-validator';
-import { signUp } from '@/api/auth';
+import { signUp } from '@/libs/api/auth';
 import { signIn } from 'next-auth/react';
 import { LoginData } from '@/libs/validators/login-validator';
 
@@ -18,9 +18,7 @@ export const useSignup = (
 
 export const SIGN_IN_KEY = 'SIGN_IN';
 
-export const credentialsSignIn = async (
-  data: LoginData
-): Promise<{ ok: boolean }> => {
+export const credentialsSignIn = async (data: LoginData): Promise<{ ok: boolean }> => {
   const res = (await signIn('credentials', {
     username: data.email,
     password: data.password,

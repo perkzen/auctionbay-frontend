@@ -4,7 +4,7 @@ import {
   getUserEarnings,
   getUserPostedAuctions,
   getUserWinningBids,
-} from '@/api/statistics';
+} from '@/libs/api/statistics';
 import { AxiosError } from 'axios';
 
 export const USER_EARNINGS_QUERY_KEY = 'user-earnings';

@@ -8,7 +8,7 @@ import FileUpload from '@/components/ui/file-upload';
 import { Button } from '@/components/ui/button';
 import UserAvatar from '@/components/ui/navbar/user-avatar';
 import { useForm } from 'react-hook-form';
-import { USER_KEY, useUpdateProfilePicture } from '@/hooks/user';
+import { USER_KEY, useUpdateProfilePicture } from '@/libs/hooks/user';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
