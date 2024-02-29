@@ -1,5 +1,11 @@
 'use client';
-import React, { forwardRef, InputHTMLAttributes } from 'react';
+import React, {
+  forwardRef,
+  InputHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import FileUpload from '@/components/ui/file-upload';
 import { cn } from '@/libs/utils';
 import { Button } from '@/components/ui/button';
@@ -14,7 +20,20 @@ interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
   ({ image, onRemove, error, ...props }, ref) => {
-    const imageUrl = image ? URL.createObjectURL(image) : '';
+    const [imageUrl, setImageUrl] = useState('');
+
+    useEffect(() => {
+      if (!image) return;
+
+      const url = URL.createObjectURL(image);
+      setImageUrl(url);
+
+      return () => {
+        if (url && image) {
+          URL.revokeObjectURL(url);
+        }
+      };
+    }, [image]);
 
     const errorClass = error
       ? 'border border-red-500 focus:border-red-500 focus-visible:border-red-500'
@@ -54,9 +73,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             </Button>
           )}
         </div>
-        {error && (
-          <small className={'text-sm font-light text-red-500'}>{error}</small>
-        )}
+        {error && <small className={'text-sm font-light text-red-500'}>{error}</small>}
       </div>
     );
   }
