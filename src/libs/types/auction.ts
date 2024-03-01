@@ -21,4 +21,5 @@ export type Auction = {
   createdAt: string;
   startingPrice: number;
   endsAt: string;
+  status: AuctionStatus;
 };

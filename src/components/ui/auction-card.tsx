@@ -1,9 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import BidStatusTag from '@/components/ui/bid-status-tag';
-import { BidStatus } from '@/libs/types/bid';
 import TimeTag from '@/components/ui/time-tag';
 import Image from 'next/image';
 import { Auction } from '@/libs/types/auction';
+import AuctionStatusTag from '@/components/ui/auction-status-tag';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -13,7 +12,8 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
   return (
     <Card className={'h-fit w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
-        <BidStatusTag status={BidStatus.OUTBID} size={'sm'} />
+        {/*<BidStatusTag status={BidStatus.OUTBID} size={'sm'} />*/}
+        <AuctionStatusTag status={auction.status} size={'sm'} />
         <TimeTag endsAt={auction.endsAt} size={'sm'} />
       </CardHeader>
       <CardContent className={'p-0'}>
