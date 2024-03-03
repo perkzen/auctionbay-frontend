@@ -1,5 +1,6 @@
 import {
   createAuction,
+  getAuction,
   getAuctionList,
   getUserAuctions,
   getUserBiddingAuctions,
@@ -14,6 +15,19 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
+
+export const AUCTION_KEY = 'auction';
+
+export const useAuction = (
+  id: string,
+  opts?: UseQueryOptions<Auction, AxiosError, Auction, [typeof AUCTION_KEY, string]>
+) => {
+  return useQuery({
+    queryKey: [AUCTION_KEY, id],
+    queryFn: () => getAuction(id),
+    ...opts,
+  });
+};
 
 export const AUCTION_LIST_KEY = 'auction-list';
 

@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import ImageUpload from '@/components/ui/image-upload';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import EuroIcon from '@/assets/icons/Eur.svg';
+import EuroIcon from '@/assets/icons/Eur-grey.svg';
 import Image from 'next/image';
 import { DatePicker } from '@/components/ui/date-picker';
 import {

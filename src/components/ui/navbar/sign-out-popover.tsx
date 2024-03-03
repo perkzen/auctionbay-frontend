@@ -1,9 +1,5 @@
 'use client';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { signOut } from 'next-auth/react';
 import ProfileSettingsButton from '@/components/ui/navbar/profile-settings/profile-settings-button';
@@ -24,11 +20,7 @@ const SignOutPopover = () => {
       <PopoverContent className={'sm:max-w-[204px]'}>
         <div className="flex flex-col items-center gap-4">
           <ProfileSettingsButton />
-          <Button
-            variant={'inverse'}
-            className={'w-full'}
-            onClick={handleSignOut}
-          >
+          <Button variant={'inverse'} className={'w-full'} onClick={handleSignOut}>
             Log out
           </Button>
         </div>

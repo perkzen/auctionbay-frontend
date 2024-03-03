@@ -4,6 +4,11 @@ import { AxiosResponse } from 'axios';
 import { Auction } from '@/libs/types/auction';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 
+export const getAuction = async (id: string) => {
+  const res = (await api.get(`${Endpoint.AUCTIONS}/${id}`)) as AxiosResponse<Auction>;
+  return res.data;
+};
+
 export const getAuctionList = async () => {
   const res = (await api.get(Endpoint.AUCTIONS)) as AxiosResponse<Auction[]>;
   return res.data;
