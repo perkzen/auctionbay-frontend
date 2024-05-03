@@ -1,7 +1,6 @@
 'use client';
 import { z } from 'zod';
-
-const numberString = () => z.string().regex(/^[0-9]+$/, 'Must be a number');
+import { numberString } from '@/libs/validators/common';
 
 export const CreateAuctionValidator = z.object({
   title: z.string().min(2),

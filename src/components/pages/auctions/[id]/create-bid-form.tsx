@@ -1,0 +1,43 @@
+'use client';
+import React from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useForm } from 'react-hook-form';
+import {
+  CreateBidData,
+  CreateBidValidator,
+} from '@/libs/validators/create-bid-validator';
+import { useParams } from 'next/navigation';
+import { useBid } from '@/libs/hooks/auction';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+
+const CreateBidForm = () => {
+  const params = useParams();
+  const { id } = params;
+
+  const { register, handleSubmit } = useForm<CreateBidData>({
+    defaultValues: { amount: '0', auctionId: id as string },
+    resolver: zodResolver(CreateBidValidator),
+  });
+
+  const { mutateAsync } = useBid();
+
+  const onSubmit = handleSubmit((data) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Placing bid...',
+      success: 'Bid placed!',
+      error: 'Failed to place bid',
+    });
+  });
+
+  return (
+    <form className={'flex flex-row items-center justify-end gap-4'} onSubmit={onSubmit}>
+      <div>Bid:</div>
+      <Input {...register('amount')} type={'number'} className={'w-[83px]'} min={0} />
+      <Button>Place bid</Button>
+    </form>
+  );
+};
+
+export default CreateBidForm;

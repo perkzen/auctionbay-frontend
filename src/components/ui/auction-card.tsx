@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TimeTag from '@/components/ui/time-tag';
 import Image from 'next/image';
-import { Auction } from '@/libs/types/auction';
+import { Auction, AuctionStatus } from '@/libs/types/auction';
 import AuctionStatusTag from '@/components/ui/auction-status-tag';
 import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
@@ -15,9 +15,10 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
     <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
       <Card className={'h-fit w-[216px]'}>
         <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
-          {/*<BidStatusTag status={BidStatus.OUTBID} size={'sm'} />*/}
           <AuctionStatusTag status={auction.status} size={'sm'} />
-          <TimeTag endsAt={auction.endsAt} size={'sm'} />
+          {auction.status === AuctionStatus.ACTIVE && (
+            <TimeTag endsAt={auction.endsAt} size={'sm'} />
+          )}
         </CardHeader>
         <CardContent className={'p-0'}>
           <div className={'p-2'}>

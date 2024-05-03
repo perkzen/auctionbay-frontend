@@ -1,7 +1,9 @@
 import {
   createAuction,
+  createBid,
   getAuction,
   getAuctionList,
+  getBiddingHistory,
   getUserAuctions,
   getUserBiddingAuctions,
   getUserWonAuctions,
@@ -15,6 +17,8 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
+import { AuctionBid, Bid } from '@/libs/types/bid';
+import { CreateBidData } from '@/libs/validators/create-bid-validator';
 
 export const AUCTION_KEY = 'auction';
 
@@ -93,3 +97,41 @@ export const useUserBiddingAuctions = (
     ...opts,
   });
 };
+
+export const BIDDING_HISTORY_KEY = 'bidding-history';
+
+export const useBiddingHistory = (
+  id: string,
+  opts?: UseQueryOptions<
+    AuctionBid[],
+    AxiosError,
+    AuctionBid[],
+    [typeof BIDDING_HISTORY_KEY, string]
+  >
+) => {
+  return useQuery({
+    queryKey: [BIDDING_HISTORY_KEY, id],
+    queryFn: () => getBiddingHistory(id),
+    ...opts,
+  });
+};
+
+export const BID_KEY = 'bid';
+
+export const useBid = (opts?: UseMutationOptions<Bid, Error, CreateBidData, unknown>) =>
+  useMutation({
+    mutationKey: [BID_KEY],
+    mutationFn: createBid,
+    ...opts,
+  });
+
+export const AUTO_BID_KEY = 'auto-bid';
+
+export const useAutoBid = (
+  opts?: UseMutationOptions<Bid, Error, CreateBidData, unknown>
+) =>
+  useMutation({
+    mutationKey: [AUTO_BID_KEY],
+    mutationFn: createBid,
+    ...opts,
+  });

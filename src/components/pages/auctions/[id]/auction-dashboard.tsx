@@ -18,7 +18,12 @@ const AuctionDashboard = ({ auctionId }: AuctionDashboardProps) => {
           <Image src={data.imageUrl} alt={data.title} className={'rounded-2xl'} fill />
         </div>
         <div className={'flex w-full flex-col gap-4'}>
-          <AuctionInfoCard />
+          <AuctionInfoCard
+            status={data.status}
+            endsAt={data.endsAt}
+            title={data.title}
+            description={data.description}
+          />
           <BiddingHistoryCard />
         </div>
       </div>
