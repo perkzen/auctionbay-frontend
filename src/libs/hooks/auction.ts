@@ -9,6 +9,7 @@ import {
   getUserAuctions,
   getUserBiddingAuctions,
   getUserWonAuctions,
+  updateAuction,
 } from '@/libs/api/auctions';
 import { Auction } from '@/libs/types/auction';
 import {
@@ -22,6 +23,7 @@ import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 import { AuctionBid, AutoBid, Bid } from '@/libs/types/bid';
 import { CreateBidData } from '@/libs/validators/create-bid-validator';
 import { CreateAutoBidData } from '@/libs/validators/create-autobid-validator';
+import { UpdateAuctionData } from '@/libs/validators/update-auction-validator';
 
 export const AUCTION_KEY = 'auction';
 
@@ -142,10 +144,23 @@ export const useAutoBid = (
 export const DELETE_AUCTION_KEY = 'delete-auction';
 
 export const useDeleteAuction = (
-  opts?: UseMutationOptions<void, Error, string, unknown>
+  id: string,
+  opts?: UseMutationOptions<void, Error, void, unknown>
 ) =>
-  useMutation({
-    mutationKey: [DELETE_AUCTION_KEY],
-    mutationFn: deleteAuction,
+  useMutation<void, Error, void, unknown>({
+    mutationKey: [DELETE_AUCTION_KEY, id],
+    mutationFn: () => deleteAuction(id),
+    ...opts,
+  });
+
+export const UPDATE_AUCTION_KEY = 'update-auction';
+
+export const useUpdateAuction = (
+  id: string,
+  opts?: UseMutationOptions<Auction, Error, UpdateAuctionData, unknown>
+) =>
+  useMutation<Auction, Error, UpdateAuctionData, unknown>({
+    mutationKey: [UPDATE_AUCTION_KEY, id],
+    mutationFn: (data) => updateAuction(id, data),
     ...opts,
   });

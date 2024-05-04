@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import AuctionCard from '@/components/ui/auction-card';
+import AuctionCard from '@/components/ui/auction-card/auction-card';
 import { Auction } from '@/libs/types/auction';
 
 interface AuctionsListProps {

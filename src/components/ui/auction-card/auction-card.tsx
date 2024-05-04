@@ -19,6 +19,8 @@ import { Button } from '@/components/ui/button';
 import { useDeleteAuction, USER_AUCTIONS_KEY } from '@/libs/hooks/auction';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import EditAuctionForm from '@/components/ui/auction-card/edit-auction-form';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -28,7 +30,7 @@ interface AuctionCardProps {
 const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync } = useDeleteAuction({
+  const { mutateAsync } = useDeleteAuction(auction.id, {
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [USER_AUCTIONS_KEY],
@@ -36,11 +38,8 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
     },
   });
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    toast.promise(mutateAsync(auction.id), {
+  const handleDelete = () => {
+    toast.promise(mutateAsync(), {
       loading: 'Deleting auction...',
       success: 'Auction deleted successfully',
       error: 'Failed to delete auction',
@@ -48,15 +47,15 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   };
 
   return (
-    <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
-      <Card className={'h-fit w-[216px]'}>
-        <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
-          <AuctionStatusTag status={auction.status} size={'sm'} />
-          {auction.status === AuctionStatus.ACTIVE && (
-            <TimeTag endsAt={auction.endsAt} size={'sm'} />
-          )}
-        </CardHeader>
-        <CardContent className={'p-0'}>
+    <Card className={'h-fit w-[216px]'}>
+      <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
+        <AuctionStatusTag status={auction.status} size={'sm'} />
+        {auction.status === AuctionStatus.ACTIVE && (
+          <TimeTag endsAt={auction.endsAt} size={'sm'} />
+        )}
+      </CardHeader>
+      <CardContent className={'p-0'}>
+        <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
           <div className={'p-2'}>
             <CardTitle className={'text-base font-light'}>{auction.title}</CardTitle>
             <div className={'mt-2'}>{auction.startingPrice} €</div>
@@ -71,22 +70,30 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
               priority
             />
           </div>
-          {canEdit && (
-            <CardFooter className={'flex w-full flex-row gap-1 p-2 pt-0'}>
-              <Button variant={'outline'} size={'icon'} onClick={handleDelete}>
-                <Image src={DeleteIcon} alt={'Delete'} width={16} height={16} />
-              </Button>
-              <Button variant={'secondary'} className={'flex-grow'}>
-                <span className={'inline-flex gap-2'}>
-                  <Image src={EditIcon} alt={'Edit'} width={16} height={16} />
-                  Edit
-                </span>
-              </Button>
-            </CardFooter>
-          )}
-        </CardContent>
-      </Card>
-    </Link>
+        </Link>
+        {canEdit && (
+          <CardFooter className={'flex w-full flex-row gap-1 p-2 pt-0'}>
+            <Button variant={'outline'} size={'icon'} onClick={handleDelete}>
+              <Image src={DeleteIcon} alt={'Delete'} width={16} height={16} />
+            </Button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant={'secondary'} className={'flex-grow'}>
+                  <span className={'inline-flex gap-2'}>
+                    <Image src={EditIcon} alt={'Edit'} width={16} height={16} />
+                    Edit
+                  </span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent className={'sm:max-w-[533px]'}>
+                <EditAuctionForm auction={auction} />
+              </DialogContent>
+            </Dialog>
+          </CardFooter>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 export default AuctionCard;

@@ -15,12 +15,13 @@ import Image from 'next/image';
 interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   onRemove: () => void;
   image: File | null;
+  url?: string;
   error?: string;
 }
 
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
-  ({ image, onRemove, error, ...props }, ref) => {
-    const [imageUrl, setImageUrl] = useState('');
+  ({ image, onRemove, error, url = '', ...props }, ref) => {
+    const [imageUrl, setImageUrl] = useState(url);
 
     useEffect(() => {
       if (!image) return;

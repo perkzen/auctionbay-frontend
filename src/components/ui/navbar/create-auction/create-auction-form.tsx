@@ -140,7 +140,7 @@ const CreateAuctionForm = () => {
             Cancel
           </Button>
         </DialogClose>
-        <Button form={'create-auction'}>Save changes</Button>
+        <Button form={'create-auction'}>Start auction</Button>
       </DialogFooter>
     </>
   );

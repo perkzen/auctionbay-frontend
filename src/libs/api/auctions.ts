@@ -81,3 +81,24 @@ export const createAutoBid = async (data: CreateAutoBidData) => {
 export const deleteAuction = async (id: string) => {
   await api.delete(`${Endpoint.AUCTIONS}/${id}`);
 };
+
+export const updateAuction = async (id: string, data: CreateAuctionData) => {
+  data.endDate.setHours(24, 0, 0, 0); // Set time to midnight
+
+  const endDateISO = new Date(
+    data.endDate.getTime() - data.endDate.getTimezoneOffset() * 60000
+  ).toISOString();
+
+  const formData = new FormData();
+  formData.append('image', data.fileList?.item(0) as Blob);
+  formData.append('title', data.title);
+  formData.append('description', data.description);
+  formData.append('endsAt', endDateISO);
+
+  const res = (await api.put(`${Endpoint.AUCTIONS}/${id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })) as AxiosResponse<Auction>;
+  return res.data;
+};
