@@ -20,6 +20,14 @@ const timeTagVariants = cva('flex flex-row gap-1 items-center', {
   },
 });
 
+const iconSize = {
+  sm: 12,
+  default: 20,
+};
+
+const getIconSize = (size: keyof typeof iconSize | null | undefined) =>
+  size ? iconSize[size] : 20;
+
 interface TimeTagProps extends Omit<VariantProps<typeof timeTagVariants>, 'variant'> {
   endsAt: string;
   className?: string;
@@ -40,7 +48,12 @@ const TimeTag = ({ size, endsAt, className }: TimeTagProps) => {
       )}
     >
       <span>{timeLeft}</span>
-      <Image src={TimeIcon} alt={'Time'} width={12} height={12} />
+      <Image
+        src={TimeIcon}
+        alt={'Time'}
+        width={getIconSize(size)}
+        height={getIconSize(size)}
+      />
     </div>
   );
 };
