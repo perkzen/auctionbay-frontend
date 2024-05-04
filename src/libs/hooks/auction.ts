@@ -1,5 +1,6 @@
 import {
   createAuction,
+  createAutoBid,
   createBid,
   getAuction,
   getAuctionList,
@@ -17,8 +18,9 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
-import { AuctionBid, Bid } from '@/libs/types/bid';
+import { AuctionBid, AutoBid, Bid } from '@/libs/types/bid';
 import { CreateBidData } from '@/libs/validators/create-bid-validator';
+import { CreateAutoBidData } from '@/libs/validators/create-autobid-validator';
 
 export const AUCTION_KEY = 'auction';
 
@@ -128,10 +130,10 @@ export const useBid = (opts?: UseMutationOptions<Bid, Error, CreateBidData, unkn
 export const AUTO_BID_KEY = 'auto-bid';
 
 export const useAutoBid = (
-  opts?: UseMutationOptions<Bid, Error, CreateBidData, unknown>
+  opts?: UseMutationOptions<AutoBid, Error, CreateAutoBidData, unknown>
 ) =>
   useMutation({
     mutationKey: [AUTO_BID_KEY],
-    mutationFn: createBid,
+    mutationFn: createAutoBid,
     ...opts,
   });

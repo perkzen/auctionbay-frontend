@@ -8,9 +8,11 @@ import {
   CreateBidValidator,
 } from '@/libs/validators/create-bid-validator';
 import { useParams } from 'next/navigation';
-import { useBid } from '@/libs/hooks/auction';
+import { BIDDING_HISTORY_KEY, useBid } from '@/libs/hooks/auction';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
+import { AxiosError } from 'axios';
+import { useQueryClient } from '@tanstack/react-query';
 
 const CreateBidForm = () => {
   const params = useParams();
@@ -21,13 +23,22 @@ const CreateBidForm = () => {
     resolver: zodResolver(CreateBidValidator),
   });
 
-  const { mutateAsync } = useBid();
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useBid({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [BIDDING_HISTORY_KEY, id],
+      });
+    },
+  });
 
   const onSubmit = handleSubmit((data) => {
     toast.promise(mutateAsync(data), {
       loading: 'Placing bid...',
       success: 'Bid placed!',
-      error: 'Failed to place bid',
+      error: (error: AxiosError<{ message: string }>) =>
+        `${error.response?.data.message}!` || 'Failed to place bid!',
     });
   });
 

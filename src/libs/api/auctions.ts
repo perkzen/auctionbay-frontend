@@ -70,8 +70,8 @@ export const createBid = async (data: CreateBidData) => {
 
 export const createAutoBid = async (data: CreateAutoBidData) => {
   const res = (await api.post(`${Endpoint.AUCTIONS}/${data.auctionId}/auto-bid`, {
-    maxAmount: data.maxAmount,
-    incrementAmount: data.incrementAmount,
+    maxAmount: Number(data.maxAmount),
+    incrementAmount: Number(data.incrementAmount),
   })) as AxiosResponse<AutoBid>;
   return res.data;
 };
