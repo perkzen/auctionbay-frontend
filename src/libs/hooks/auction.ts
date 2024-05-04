@@ -2,6 +2,7 @@ import {
   createAuction,
   createAutoBid,
   createBid,
+  deleteAuction,
   getAuction,
   getAuctionList,
   getBiddingHistory,
@@ -135,5 +136,16 @@ export const useAutoBid = (
   useMutation({
     mutationKey: [AUTO_BID_KEY],
     mutationFn: createAutoBid,
+    ...opts,
+  });
+
+export const DELETE_AUCTION_KEY = 'delete-auction';
+
+export const useDeleteAuction = (
+  opts?: UseMutationOptions<void, Error, string, unknown>
+) =>
+  useMutation({
+    mutationKey: [DELETE_AUCTION_KEY],
+    mutationFn: deleteAuction,
     ...opts,
   });

@@ -1,3 +1,5 @@
+'use client';
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -14,6 +16,9 @@ import AuctionStatusTag from '@/components/ui/auction-status-tag';
 import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
 import { Button } from '@/components/ui/button';
+import { useDeleteAuction, USER_AUCTIONS_KEY } from '@/libs/hooks/auction';
+import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -21,6 +26,27 @@ interface AuctionCardProps {
 }
 
 const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useDeleteAuction({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [USER_AUCTIONS_KEY],
+      });
+    },
+  });
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    toast.promise(mutateAsync(auction.id), {
+      loading: 'Deleting auction...',
+      success: 'Auction deleted successfully',
+      error: 'Failed to delete auction',
+    });
+  };
+
   return (
     <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
       <Card className={'h-fit w-[216px]'}>
@@ -47,7 +73,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
           </div>
           {canEdit && (
             <CardFooter className={'flex w-full flex-row gap-1 p-2 pt-0'}>
-              <Button variant={'outline'} size={'icon'}>
+              <Button variant={'outline'} size={'icon'} onClick={handleDelete}>
                 <Image src={DeleteIcon} alt={'Delete'} width={16} height={16} />
               </Button>
               <Button variant={'secondary'} className={'flex-grow'}>
@@ -63,5 +89,4 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
     </Link>
   );
 };
-
 export default AuctionCard;

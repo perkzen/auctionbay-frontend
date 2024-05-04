@@ -77,3 +77,7 @@ export const createAutoBid = async (data: CreateAutoBidData) => {
   })) as AxiosResponse<AutoBid>;
   return res.data;
 };
+
+export const deleteAuction = async (id: string) => {
+  await api.delete(`${Endpoint.AUCTIONS}/${id}`);
+};
