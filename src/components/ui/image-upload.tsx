@@ -9,7 +9,7 @@ import React, {
 import FileUpload from '@/components/ui/file-upload';
 import { cn } from '@/libs/utils';
 import { Button } from '@/components/ui/button';
-import TrashIcon from '@/assets/icons/Delete.svg';
+import TrashIcon from '@/assets/icons/Delete-white.svg';
 import Image from 'next/image';
 
 interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -34,6 +34,11 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
         }
       };
     }, [image]);
+
+    const handleRemove = useCallback(() => {
+      setImageUrl('');
+      onRemove();
+    }, [onRemove]);
 
     const errorClass = error
       ? 'border border-red-500 focus:border-red-500 focus-visible:border-red-500'
@@ -67,7 +72,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
               size={'icon'}
               className={'ml-auto mr-4 mt-4'}
               type={'button'}
-              onClick={onRemove}
+              onClick={handleRemove}
             >
               <Image src={TrashIcon} alt={'Delete'} width={24} height={24} />
             </Button>

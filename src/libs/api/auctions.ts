@@ -18,6 +18,8 @@ export const getAuctionList = async () => {
 };
 
 export const createAuction = async (data: CreateAuctionData) => {
+  data.endDate.setHours(24, 0, 0, 0); // Set time to midnight
+
   const endDateISO = new Date(
     data.endDate.getTime() - data.endDate.getTimezoneOffset() * 60000
   ).toISOString();

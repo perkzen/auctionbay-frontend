@@ -1,11 +1,7 @@
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/libs/utils';
 import TimeIcon from '@/assets/icons/Time.svg';
 import TimeGrayIcon from '@/assets/icons/Time-grey.svg';
@@ -20,12 +16,7 @@ interface DatePickerProps {
   error?: string;
 }
 
-export const DatePicker = ({
-  label,
-  error,
-  date,
-  setDate,
-}: DatePickerProps) => {
+export const DatePicker = ({ label, error, date, setDate }: DatePickerProps) => {
   const errorClass = error
     ? 'border-red-500 focus:border-red-500 focus-visible:border-red-500'
     : '';
@@ -67,9 +58,7 @@ export const DatePicker = ({
           />
         </PopoverContent>
       </Popover>
-      {error && (
-        <small className={'text-sm font-light text-red-500'}>{error}</small>
-      )}
+      {error && <small className={'text-sm font-light text-red-500'}>{error}</small>}
     </div>
   );
 };

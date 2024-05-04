@@ -1,16 +1,26 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import TimeTag from '@/components/ui/time-tag';
+import DeleteIcon from '@/assets/icons/Delete.svg';
+import EditIcon from '@/assets/icons/Edit-white.svg';
 import Image from 'next/image';
 import { Auction, AuctionStatus } from '@/libs/types/auction';
 import AuctionStatusTag from '@/components/ui/auction-status-tag';
 import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
+import { Button } from '@/components/ui/button';
 
 interface AuctionCardProps {
   auction: Auction;
+  canEdit?: boolean;
 }
 
-const AuctionCard = ({ auction }: AuctionCardProps) => {
+const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   return (
     <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
       <Card className={'h-fit w-[216px]'}>
@@ -35,6 +45,19 @@ const AuctionCard = ({ auction }: AuctionCardProps) => {
               priority
             />
           </div>
+          {canEdit && (
+            <CardFooter className={'flex w-full flex-row gap-1 p-2 pt-0'}>
+              <Button variant={'outline'} size={'icon'}>
+                <Image src={DeleteIcon} alt={'Delete'} width={16} height={16} />
+              </Button>
+              <Button variant={'secondary'} className={'flex-grow'}>
+                <span className={'inline-flex gap-2'}>
+                  <Image src={EditIcon} alt={'Edit'} width={16} height={16} />
+                  Edit
+                </span>
+              </Button>
+            </CardFooter>
+          )}
         </CardContent>
       </Card>
     </Link>

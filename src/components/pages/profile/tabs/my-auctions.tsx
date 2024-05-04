@@ -9,6 +9,7 @@ const MyAuctions = () => {
   return (
     <AuctionsList
       auctions={data || []}
+      canEdit
       emptyListComponent={
         <div className={'flex h-full'}>
           <EmptyList
