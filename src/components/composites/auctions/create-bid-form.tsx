@@ -44,8 +44,10 @@ const CreateBidForm = () => {
 
   return (
     <form className={'flex flex-row items-center justify-end gap-4'} onSubmit={onSubmit}>
-      <div>Bid:</div>
-      <Input {...register('amount')} type={'number'} className={'w-[83px]'} min={0} />
+      <div className={'flex flex-row items-center gap-2'}>
+        <label>Bid:</label>
+        <Input {...register('amount')} type={'number'} className={'w-[83px]'} min={0} />
+      </div>
       <Button>Place bid</Button>
     </form>
   );

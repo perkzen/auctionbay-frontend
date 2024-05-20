@@ -22,19 +22,25 @@ const AuctionInfoCard = ({
 }: AuctionInfoCardProps) => {
   return (
     <Card>
-      <CardHeader className={'flex flex-row justify-between '}>
+      <CardHeader className={'flex flex-row justify-between'}>
         <AuctionStatusTag status={status} />
         {status === AuctionStatus.ACTIVE && <TimeTag endsAt={endsAt} />}
       </CardHeader>
       <CardContent className={'flex flex-col gap-4'}>
         <CardTitle>{title}</CardTitle>
         <p>{description}</p>
-        <Tabs defaultValue={'bid'} className={'flex w-full flex-grow flex-col'}>
-          <TabsList className="flex w-fit flex-row gap-2 rounded-2xl bg-tertiary-100">
-            <TabsTrigger value={'bid'} className={'w-[126px] rounded-2xl sm:py-2'}>
+        <Tabs defaultValue={'bid'} className={'flex w-full flex-grow flex-col gap-4'}>
+          <TabsList className="flex w-full flex-row gap-2 rounded-2xl bg-tertiary-100 sm:w-fit">
+            <TabsTrigger
+              value={'bid'}
+              className={'w-full rounded-2xl sm:w-[126px] sm:py-2'}
+            >
               Bid
             </TabsTrigger>
-            <TabsTrigger value={'auto-bid'} className={'w-[126px] rounded-2xl sm:py-2'}>
+            <TabsTrigger
+              value={'auto-bid'}
+              className={'w-full rounded-2xl sm:w-[126px] sm:py-2'}
+            >
               Auto bid
             </TabsTrigger>
           </TabsList>
