@@ -6,6 +6,7 @@ import { CreateAuctionData } from '@/libs/validators/create-auction-validator';
 import { AuctionBid, AutoBid, Bid } from '@/libs/types/bid';
 import { CreateAutoBidData } from '@/libs/validators/create-autobid-validator';
 import { CreateBidData } from '@/libs/validators/create-bid-validator';
+import { UpdateAuctionData } from '@/libs/validators/update-auction-validator';
 
 export const getAuction = async (id: string) => {
   const res = (await api.get(`${Endpoint.AUCTIONS}/${id}`)) as AxiosResponse<Auction>;
@@ -82,7 +83,7 @@ export const deleteAuction = async (id: string) => {
   await api.delete(`${Endpoint.AUCTIONS}/${id}`);
 };
 
-export const updateAuction = async (id: string, data: CreateAuctionData) => {
+export const updateAuction = async (id: string, data: UpdateAuctionData) => {
   data.endDate.setHours(24, 0, 0, 0); // Set time to midnight
 
   const endDateISO = new Date(
