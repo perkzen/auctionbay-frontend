@@ -38,7 +38,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className={'flex w-[384px] flex-col gap-4'} onSubmit={handleSubmit(onSubmit)}>
+    <form className={'flex flex-col gap-4'} onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register('email')}
         placeholder={'john.doe@mail.com'}
