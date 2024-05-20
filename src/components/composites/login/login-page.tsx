@@ -3,7 +3,6 @@ import LoginForm from '@/components/composites/login/login-form';
 import Link from 'next/link';
 import { PublicRoute } from '@/routes';
 import { Button } from '@/components/ui/button';
-import SignupForm from '@/components/composites/signup/signup-form';
 
 const LoginPage = () => {
   return (
