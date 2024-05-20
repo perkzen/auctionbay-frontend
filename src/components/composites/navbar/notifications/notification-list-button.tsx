@@ -13,7 +13,7 @@ const NotificationListButton = () => {
           <Image src={BellIcon} alt={'Notifications'} width={24} height={24} />
         </Button>
       </DialogTrigger>
-      <DialogContent className={'sm:max-w-[442px]'}>
+      <DialogContent className={'max-w-[328px] sm:max-w-[442px]'}>
         <NotificationList />
       </DialogContent>
     </Dialog>

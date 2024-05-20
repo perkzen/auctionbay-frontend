@@ -16,7 +16,7 @@ const ProfileSettingsButton = () => {
           <span>Profile settings</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className={'sm:max-w-[533px]'}>
+      <DialogContent className={'max-w-[328px] sm:max-w-[533px]'}>
         <SettingsViewProvider>
           <ProfileSettings />
         </SettingsViewProvider>

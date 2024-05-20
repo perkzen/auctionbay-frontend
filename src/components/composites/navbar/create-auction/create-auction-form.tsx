@@ -134,7 +134,7 @@ const CreateAuctionForm = () => {
           />
         </div>
       </form>
-      <DialogFooter className={'mt-4'}>
+      <DialogFooter className={'mt-4 flex flex-row justify-end'}>
         <DialogClose asChild>
           <Button ref={closeBtnRef} variant={'tertiary'}>
             Cancel

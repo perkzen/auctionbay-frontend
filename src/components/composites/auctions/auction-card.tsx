@@ -86,7 +86,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
                   </span>
                 </Button>
               </DialogTrigger>
-              <DialogContent className={'sm:max-w-[533px]'}>
+              <DialogContent className={'max-w-[328px] sm:max-w-[533px]'}>
                 <EditAuctionForm auction={auction} />
               </DialogContent>
             </Dialog>
