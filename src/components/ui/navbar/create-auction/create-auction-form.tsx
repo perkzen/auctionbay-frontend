@@ -17,7 +17,11 @@ import {
   CreateAuctionData,
   CreateAuctionValidator,
 } from '@/libs/validators/create-auction-validator';
-import { AUCTION_LIST_KEY, useCreateAuction } from '@/libs/hooks/auction';
+import {
+  AUCTION_LIST_KEY,
+  useCreateAuction,
+  USER_AUCTIONS_KEY,
+} from '@/libs/hooks/auction';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRef } from 'react';
@@ -52,6 +56,10 @@ const CreateAuctionForm = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [AUCTION_LIST_KEY],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [USER_AUCTIONS_KEY],
       });
 
       closeBtnRef.current?.click();
@@ -132,7 +140,7 @@ const CreateAuctionForm = () => {
             Cancel
           </Button>
         </DialogClose>
-        <Button form={'create-auction'}>Save changes</Button>
+        <Button form={'create-auction'}>Start auction</Button>
       </DialogFooter>
     </>
   );
