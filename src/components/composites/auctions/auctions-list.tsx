@@ -14,7 +14,7 @@ const AuctionsList = ({ auctions, emptyListComponent, canEdit }: AuctionsListPro
       {auctions?.length === 0 ? (
         <>{emptyListComponent}</>
       ) : (
-        <div className={'flex flex-row flex-wrap gap-4'}>
+        <div className={'flex w-full flex-col flex-wrap gap-4 sm:flex-row'}>
           {auctions?.map((auction) => (
             <AuctionCard canEdit={canEdit} key={auction.id} auction={auction} />
           ))}
