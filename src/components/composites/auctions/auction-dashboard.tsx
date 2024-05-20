@@ -14,7 +14,11 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
   return (
     data && (
       <div className={'flex flex-col gap-4 sm:flex-grow sm:flex-row'}>
-        <div className={'relative flex sm:max-h-[calc(100dvh-128px)] sm:w-1/2'}>
+        <div
+          className={
+            'relative flex h-[200px] sm:h-auto sm:max-h-[calc(100dvh-128px)] sm:w-1/2'
+          }
+        >
           <Image
             src={data.imageUrl}
             alt={data.title}
