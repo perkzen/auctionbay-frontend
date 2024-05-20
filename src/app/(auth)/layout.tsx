@@ -7,7 +7,7 @@ import AuctionBayLogo from '@/assets/auctionbay-logo.svg';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <main className={'flex  flex-1 flex-row  lg:items-stretch'}>
+    <main className={'flex flex-1 flex-row lg:items-stretch'}>
       <Image
         src={AuctionsImage}
         alt={'Auctions'}
@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       />
       <aside
         className={
-          'mx-auto my-2 flex max-w-[448px] flex-col rounded-[32px] bg-white px-8 py-16 xl:m-2'
+          'xs:mx-auto mx-2 my-2 flex w-full max-w-[448px] flex-col rounded-[32px] bg-white px-4 py-16 sm:px-8 xl:m-2'
         }
       >
         <Link href={PublicRoute.HOME}>

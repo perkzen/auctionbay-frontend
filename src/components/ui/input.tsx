@@ -30,16 +30,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {trailingIcon && (
-            <div
-              className={'absolute inset-y-0 right-0 flex items-center pr-4'}
-            >
+            <div className={'absolute inset-y-0 right-0 flex items-center pr-4'}>
               {trailingIcon}
             </div>
           )}
         </div>
-        {error && (
-          <small className={'text-sm font-light text-red-500'}>{error}</small>
-        )}
+        {error && <small className={'text-sm font-light text-red-500'}>{error}</small>}
       </div>
     );
   }

@@ -13,8 +13,12 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
 
   return (
     data && (
-      <div className={'flex flex-grow flex-row gap-4'}>
-        <div className={'relative flex max-h-[calc(100dvh-128px)] w-1/2'}>
+      <div className={'flex flex-col gap-4 sm:flex-grow sm:flex-row'}>
+        <div
+          className={
+            'relative flex h-[200px] sm:h-auto sm:max-h-[calc(100dvh-128px)] sm:w-1/2'
+          }
+        >
           <Image
             src={data.imageUrl}
             alt={data.title}
@@ -22,7 +26,7 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
             fill={true}
           />
         </div>
-        <div className={'flex w-1/2 flex-col gap-4'}>
+        <div className={'flex w-full flex-col gap-4 sm:w-1/2'}>
           <AuctionInfoCard
             status={data.status}
             endsAt={data.endsAt}

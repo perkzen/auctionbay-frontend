@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 const LoginPage = () => {
   return (
     <>
-      <div className={'m-auto'}>
+      <div className={'m-auto w-full'}>
         <div className={'mb-16 flex flex-col gap-2 text-center'}>
           <h1 className={'text-3.5xl font-bold'}>Welcome back!</h1>
           <p className={'font-light'}>Please enter your details</p>

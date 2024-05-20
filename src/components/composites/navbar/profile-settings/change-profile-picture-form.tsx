@@ -61,7 +61,7 @@ const ChangeProfilePictureForm = () => {
           label={'Upload new picture'}
         />
       </form>
-      <DialogFooter className={'mt-4'}>
+      <DialogFooter className={'mt-4 flex flex-row justify-end'}>
         <DialogClose asChild>
           <Button variant={'tertiary'}>Cancel</Button>
         </DialogClose>

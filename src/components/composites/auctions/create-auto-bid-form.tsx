@@ -42,12 +42,28 @@ const CreateAutoBidForm = () => {
   });
 
   return (
-    <form className={'flex flex-row items-center justify-end gap-4'} onSubmit={onSubmit}>
-      <div>Bid increment:</div>
-      <Input {...register('incrementAmount')} type={'number'} className={'w-[83px]'} />
-      <div>Max price:</div>
-      <Input {...register('maxAmount')} type={'number'} className={'w-[83px]'} />
-      <Button>Auto bid</Button>
+    <form
+      className={'flex w-full flex-col justify-end gap-4 sm:flex-row sm:items-center'}
+      onSubmit={onSubmit}
+    >
+      <div className={'flex flex-row items-center gap-2'}>
+        <label className={'flex-shrink-0'}>Bid increment:</label>
+        <Input
+          {...register('incrementAmount')}
+          type={'number'}
+          className={'w-full sm:w-[83px]'}
+        />
+      </div>
+
+      <div className={'flex flex-row items-center gap-2'}>
+        <label className={''}>Max price:</label>
+        <Input
+          {...register('maxAmount')}
+          type={'number'}
+          className={'w-fit sm:w-[83px]'}
+        />
+      </div>
+      <Button className={'w-fit self-end'}>Auto bid</Button>
     </form>
   );
 };

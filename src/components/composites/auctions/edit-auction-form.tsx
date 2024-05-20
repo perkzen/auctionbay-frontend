@@ -115,13 +115,15 @@ const EditAuctionForm = ({ auction }: EditAuctionFormProps) => {
           error={errors.endDate?.message}
         />
       </form>
-      <DialogFooter className={'mt-4'}>
+      <DialogFooter className={'mt-4 flex flex-row justify-end'}>
         <DialogClose asChild>
           <Button variant={'tertiary'} ref={closeBtnRef}>
             Discard changes
           </Button>
         </DialogClose>
-        <Button form={'update-auction'}>Edit auction</Button>
+        <Button form={'update-auction'} variant={'secondary'}>
+          Edit auction
+        </Button>
       </DialogFooter>
     </>
   );

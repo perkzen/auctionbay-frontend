@@ -17,7 +17,7 @@ const SignOutPopover = () => {
           <UserAvatar />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className={'sm:max-w-[204px]'}>
+      <PopoverContent className={'max-w-[204px]'}>
         <div className="flex flex-col items-center gap-4">
           <ProfileSettingsButton />
           <Button variant={'inverse'} className={'w-full'} onClick={handleSignOut}>

@@ -13,7 +13,7 @@ const CreateAuctionButton = () => {
           <Image src={AddIcon} alt={'Add'} width={24} height={24} />
         </Button>
       </DialogTrigger>
-      <DialogContent className={'sm:max-w-[533px]'}>
+      <DialogContent className={'max-w-[328px] sm:max-w-[533px]'}>
         <CreateAuctionForm />
       </DialogContent>
     </Dialog>

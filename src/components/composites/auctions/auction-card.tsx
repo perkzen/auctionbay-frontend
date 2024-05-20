@@ -47,7 +47,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   };
 
   return (
-    <Card className={'h-fit w-[216px]'}>
+    <Card className={'h-fit w-full sm:w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
         <AuctionStatusTag status={auction.status} size={'sm'} />
         {auction.status === AuctionStatus.ACTIVE && (
@@ -86,7 +86,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
                   </span>
                 </Button>
               </DialogTrigger>
-              <DialogContent className={'sm:max-w-[533px]'}>
+              <DialogContent className={'max-w-[328px] sm:max-w-[533px]'}>
                 <EditAuctionForm auction={auction} />
               </DialogContent>
             </Dialog>

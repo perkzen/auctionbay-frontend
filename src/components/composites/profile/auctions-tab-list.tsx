@@ -16,7 +16,7 @@ const AuctionsTabList = () => {
       defaultValue={AuctionFilterType.MY_AUCTIONS}
       className={'flex w-full flex-grow flex-col'}
     >
-      <TabsList className="mx-auto my-4 flex h-fit w-[402px] flex-row gap-2 rounded-2xl bg-tertiary-100">
+      <TabsList className="mx-auto my-4 flex h-fit w-full flex-row gap-2 rounded-2xl bg-tertiary-100 sm:w-[402px]">
         <TabsTrigger
           className={'w-[126px] rounded-2xl sm:py-2'}
           value={AuctionFilterType.MY_AUCTIONS}

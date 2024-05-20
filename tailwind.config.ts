@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: '470px',
+      },
       fontSize: {
         xxs: ['0.625rem', '0.75rem'],
         '1.5xl': ['1.438rem', '1.725rem'],
