@@ -2,8 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { AuctionClosedNotification, formatOutcome } from '@/libs/types/notification';
 import BidStatusTag from '@/components/composites/auctions/bid-status-tag';
-import { BidStatus } from '@/libs/types/bid';
 import { formatDate } from 'date-fns';
+import StatusTag from '@/components/ui/status-tag';
 
 interface NotificationListItemProps {
   notification: AuctionClosedNotification;
@@ -27,9 +27,9 @@ const NotificationListItem = ({ notification }: NotificationListItemProps) => {
           {formatDate(notification.createdAt, 'd.M.yyyy')}
         </p>
       </div>
-      <div className={'ml-auto flex flex-row  items-center  gap-2'}>
+      <div className={'ml-auto flex flex-row items-center gap-2'}>
         <BidStatusTag status={notification.data.bidStatus} />
-        <BidStatusTag status={outcome as BidStatus} />
+        <StatusTag status={outcome} />
       </div>
     </li>
   );

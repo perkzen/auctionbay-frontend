@@ -49,7 +49,5 @@ export const useSocket = (opts?: UseSocketOptions) => {
     };
   }, [accessToken, url]);
 
-  return {
-    socket: socketRef.current,
-  };
+  return socketRef.current;
 };
