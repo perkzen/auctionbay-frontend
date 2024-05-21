@@ -39,3 +39,9 @@ export type AuctionBid = {
   amount: number;
   createdAt: Date;
 };
+
+export type NewBidEventPayload = {
+  bidderId: string;
+  auctionId: string;
+  amount: number;
+};
