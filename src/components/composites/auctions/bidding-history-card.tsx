@@ -15,7 +15,7 @@ const BiddingHistoryCard = () => {
 
   const { data, refetch } = useBiddingHistory(id as string);
 
-  const { socket } = useSocket({
+  const socket = useSocket({
     namespace: SocketNamespace.LIVE_BIDS,
   });
 
