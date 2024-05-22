@@ -1,4 +1,4 @@
-import AuctionBayLogo from '../../../assets/auctionbay-logo.svg';
+import AuctionBayLogo from '@/assets/auctionbay-logo.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PublicRoute } from '@/routes';
