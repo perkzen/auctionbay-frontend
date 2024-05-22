@@ -51,9 +51,9 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
-  const isBidding = auction.bids.length > 0 && auction.bids[0].bidderId === userId;
+  const isBidding = auction.bids?.length > 0 && auction.bids[0].bidderId === userId;
   const latestPrice =
-    auction.bids.length > 0 ? auction.bids[0].amount : auction.startingPrice;
+    auction.bids?.length > 0 ? auction.bids[0].amount : auction.startingPrice;
 
   return (
     <Card className={'h-fit w-full sm:w-[216px]'}>
