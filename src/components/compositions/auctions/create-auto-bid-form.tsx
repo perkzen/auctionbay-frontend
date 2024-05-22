@@ -13,7 +13,11 @@ import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 import { useQueryClient } from '@tanstack/react-query';
 
-const CreateAutoBidForm = () => {
+type CreateAutoBidFormProps = {
+  disabled?: boolean;
+};
+
+const CreateAutoBidForm = ({ disabled }: CreateAutoBidFormProps) => {
   const params = useParams();
   const { id } = params;
 
@@ -63,7 +67,9 @@ const CreateAutoBidForm = () => {
           className={'w-fit sm:w-[83px]'}
         />
       </div>
-      <Button className={'w-fit self-end'}>Auto bid</Button>
+      <Button className={'w-fit self-end'} disabled={disabled}>
+        Auto bid
+      </Button>
     </form>
   );
 };

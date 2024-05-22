@@ -3,6 +3,7 @@ import { useAuction } from '@/libs/hooks/auction';
 import Image from 'next/image';
 import BiddingHistoryCard from '@/components/compositions/auctions/bidding-history-card';
 import AuctionInfoCard from '@/components/compositions/auctions/auction-info-card';
+import { useSession } from 'next-auth/react';
 
 interface AuctionDashboardProps {
   auctionId: string;
@@ -10,6 +11,10 @@ interface AuctionDashboardProps {
 
 const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
   const { data } = useAuction(auctionId);
+
+  const { data: session } = useSession();
+
+  const disableBidding = session?.user.id === data?.ownerId;
 
   return (
     data && (
@@ -28,6 +33,7 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
         </div>
         <div className={'flex w-full flex-col gap-4 sm:w-1/2'}>
           <AuctionInfoCard
+            disableBidding={disableBidding}
             status={data.status}
             endsAt={data.endsAt}
             title={data.title}

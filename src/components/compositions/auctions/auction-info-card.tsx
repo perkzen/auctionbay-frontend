@@ -12,6 +12,7 @@ interface AuctionInfoCardProps {
   title: string;
   description: string;
   endsAt: string;
+  disableBidding: boolean;
 }
 
 const AuctionInfoCard = ({
@@ -19,6 +20,7 @@ const AuctionInfoCard = ({
   description,
   status,
   endsAt,
+  disableBidding,
 }: AuctionInfoCardProps) => {
   return (
     <Card>
@@ -45,10 +47,10 @@ const AuctionInfoCard = ({
             </TabsTrigger>
           </TabsList>
           <TabsContent value={'bid'}>
-            <CreateBidForm />
+            <CreateBidForm disabled={disableBidding} />
           </TabsContent>
           <TabsContent value={'auto-bid'}>
-            <CreateAutoBidForm />
+            <CreateAutoBidForm disabled={disableBidding} />
           </TabsContent>
         </Tabs>
       </CardContent>
