@@ -11,9 +11,11 @@ import { useForm } from 'react-hook-form';
 import { USER_KEY, useUpdateProfilePicture } from '@/libs/hooks/user';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { UpdateProfilePictureValidator } from '@/libs/validators/update-profile-picture-validator';
 
 interface ChangeProfilePictureFormData {
-  picture: FileList;
+  fileList: FileList;
 }
 
 const ChangeProfilePictureForm = () => {
@@ -29,12 +31,22 @@ const ChangeProfilePictureForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { dirtyFields },
-  } = useForm<ChangeProfilePictureFormData>();
+    formState: { dirtyFields, errors },
+  } = useForm<ChangeProfilePictureFormData>({
+    defaultValues: { fileList: undefined },
+    resolver: zodResolver(UpdateProfilePictureValidator),
+  });
+
+  const showErrorMessage = () => {
+    if (errors.fileList?.message) {
+      toast.error(errors.fileList.message, {
+        duration: 5000,
+      });
+    }
+  };
 
   const onSubmit = (data: ChangeProfilePictureFormData) => {
-    const image = data.picture.item(0);
-
+    const image = data.fileList.item(0);
     if (!image) return;
 
     toast.promise(mutateAsync(image), {
@@ -54,9 +66,9 @@ const ChangeProfilePictureForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         id={'change-profile-picture'}
       >
-        <UserAvatar image={watch('picture')?.item(0)} />
+        <UserAvatar image={watch('fileList')?.item(0)} />
         <FileUpload
-          {...register('picture')}
+          {...register('fileList')}
           accept={'image/*'}
           label={'Upload new picture'}
         />
@@ -68,7 +80,8 @@ const ChangeProfilePictureForm = () => {
         <Button
           form={'change-profile-picture'}
           type={'submit'}
-          disabled={!dirtyFields.picture || isPending}
+          disabled={!dirtyFields.fileList || isPending}
+          onClick={showErrorMessage}
         >
           Save changes
         </Button>
