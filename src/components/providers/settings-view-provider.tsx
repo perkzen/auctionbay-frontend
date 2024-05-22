@@ -8,9 +8,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import ProfileSettingsForm from '@/components/composites/navbar/profile-settings/profile-settings-form';
-import ChangePasswordForm from '@/components/composites/navbar/profile-settings/change-password-form';
-import ChangeProfilePictureForm from '@/components/composites/navbar/profile-settings/change-profile-picture-form';
+import ProfileSettingsForm from '@/components/compositions/navbar/profile-settings/profile-settings-form';
+import ChangePasswordForm from '@/components/compositions/navbar/profile-settings/change-password-form';
+import ChangeProfilePictureForm from '@/components/compositions/navbar/profile-settings/change-profile-picture-form';
 
 export enum SettingsType {
   PROFILE_SETTINGS = 'PROFILE_SETTINGS',
