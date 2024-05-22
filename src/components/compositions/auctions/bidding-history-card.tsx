@@ -33,6 +33,7 @@ const BiddingHistoryCard = () => {
     }
     return () => {
       if (socket) {
+        socket.off(SocketEvent.NEW_BID);
         socket.emit(SocketEvent.LEAVE_ROOM, String(id));
       }
     };
