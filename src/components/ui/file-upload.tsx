@@ -24,6 +24,7 @@ interface FileUploadProps
   label: string;
   accept: string;
   className?: string;
+  error?: string;
 }
 
 const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
