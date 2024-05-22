@@ -22,7 +22,8 @@ export type Auction = {
   ownerId: string;
   createdAt: string;
   startingPrice: number;
+  closedPrice: number | null;
   endsAt: string;
   status: AuctionStatus;
-  bids: { status: BidStatus; amount: number; bidderId: string }[];
+  bids?: { status: BidStatus; amount: number; bidderId: string }[];
 };
