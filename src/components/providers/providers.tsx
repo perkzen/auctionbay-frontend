@@ -1,9 +1,10 @@
 'use client';
-import { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Toaster as ToastProvider } from 'sonner';
 import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NotificationProvider from '@/components/providers/notification-provider';
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -23,6 +24,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <NotificationProvider>
+          <ProgressBar height="4px" color="#F4FF47" shallowRouting />
           {children}
           <ToastProvider position={'top-center'} richColors />
         </NotificationProvider>
