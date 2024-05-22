@@ -51,15 +51,16 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
-  const isBidding = auction.bids?.length > 0 && auction.bids[0].bidderId === userId;
+  const isBidding =
+    Number(auction.bids?.length) > 0 && auction?.bids?.[0].bidderId === userId;
   const latestPrice =
-    auction.bids?.length > 0 ? auction.bids[0].amount : auction.startingPrice;
+    Number(auction?.bids?.length) > 0 ? auction.bids?.[0].amount : auction.startingPrice;
 
   return (
     <Card className={'h-fit w-full sm:w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
-        {isBidding ? (
-          <BidStatusTag status={auction.bids[0].status} size={'sm'} />
+        {isBidding && auction.bids?.[0] ? (
+          <BidStatusTag status={auction.bids?.[0].status} size={'sm'} />
         ) : (
           <AuctionStatusTag status={auction.status} size={'sm'} />
         )}
@@ -71,7 +72,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
         <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
           <div className={'p-2'}>
             <CardTitle className={'text-base font-light'}>{auction.title}</CardTitle>
-            <div className={'mt-2'}>{latestPrice} €</div>
+            <div className={'mt-2'}>{auction.closedPrice || latestPrice} €</div>
           </div>
           <div className={'relative h-[158px] w-full'}>
             <Image

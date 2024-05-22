@@ -24,7 +24,12 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <NotificationProvider>
-          <ProgressBar height="4px" color="#F4FF47" shallowRouting />
+          <ProgressBar
+            height="4px"
+            color="#F4FF47"
+            shallowRouting
+            options={{ showSpinner: false }}
+          />
           {children}
           <ToastProvider position={'top-center'} richColors />
         </NotificationProvider>
