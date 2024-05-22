@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import { getAuction } from '@/libs/api/auctions';
-import AuctionDashboardPage from '@/components/composites/auctions/auction-dashboard';
+import AuctionDashboardPage from '@/components/compositions/auctions/auction-dashboard';
 
 export default async function Auction({ params }: { params: { id: string } }) {
   const auctionId = params.id;

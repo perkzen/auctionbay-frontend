@@ -1,9 +1,11 @@
 import { NewBidEventPayload } from '@/libs/types/bid';
+import { AuctionClosedNotification } from '@/libs/types/notification';
 
 export enum SocketEvent {
   JOIN_ROOM = 'join-room',
   LEAVE_ROOM = 'leave-room',
   NEW_BID = 'auction.new-bid',
+  NEW_NOTIFICATION = 'new_notification',
 }
 
 export enum SocketNamespace {
@@ -18,4 +20,5 @@ export interface SocketEmitEvents {
 
 export interface SocketListenEvents {
   [SocketEvent.NEW_BID]: (data: NewBidEventPayload) => void;
+  [SocketEvent.NEW_NOTIFICATION]: (data: AuctionClosedNotification) => void;
 }

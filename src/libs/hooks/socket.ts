@@ -30,6 +30,9 @@ export const useSocket = (opts?: UseSocketOptions) => {
     : env.NEXT_PUBLIC_BACKEND_URL;
 
   useEffect(() => {
+    // only connect to the socket if the user is authenticated
+    if (!accessToken) return;
+
     const socket: Socket<SocketListenEvents, SocketEmitEvents> = io(url, {
       ...socketOptions,
       extraHeaders: {
@@ -49,7 +52,5 @@ export const useSocket = (opts?: UseSocketOptions) => {
     };
   }, [accessToken, url]);
 
-  return {
-    socket: socketRef.current,
-  };
+  return socketRef.current;
 };
