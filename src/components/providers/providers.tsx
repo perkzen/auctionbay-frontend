@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react';
 import { Toaster as ToastProvider } from 'sonner';
 import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import NotificationProvider from '@/components/providers/notification-provider';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -21,8 +22,10 @@ const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
-        {children}
-        <ToastProvider position={'top-center'} richColors />
+        <NotificationProvider>
+          {children}
+          <ToastProvider position={'top-center'} richColors />
+        </NotificationProvider>
       </QueryClientProvider>
     </SessionProvider>
   );
