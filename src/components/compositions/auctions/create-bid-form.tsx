@@ -14,7 +14,11 @@ import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 import { useQueryClient } from '@tanstack/react-query';
 
-const CreateBidForm = () => {
+type CreateBidFormProps = {
+  disabled?: boolean;
+};
+
+const CreateBidForm = ({ disabled }: CreateBidFormProps) => {
   const params = useParams();
   const { id } = params;
 
@@ -48,7 +52,7 @@ const CreateBidForm = () => {
         <label>Bid:</label>
         <Input {...register('amount')} type={'number'} className={'w-[83px]'} min={0} />
       </div>
-      <Button>Place bid</Button>
+      <Button disabled={disabled}>Place bid</Button>
     </form>
   );
 };
