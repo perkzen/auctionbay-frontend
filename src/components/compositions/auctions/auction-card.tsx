@@ -21,6 +21,8 @@ import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import EditAuctionForm from '@/components/compositions/auctions/edit-auction-form';
+import BidStatusTag from '@/components/compositions/auctions/bid-status-tag';
+import { useSession } from 'next-auth/react';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -46,10 +48,21 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
     });
   };
 
+  const { data: session } = useSession();
+  const userId = session?.user.id;
+
+  const isBidding = auction.bids.length > 0 && auction.bids[0].bidderId === userId;
+  const latestPrice =
+    auction.bids.length > 0 ? auction.bids[0].amount : auction.startingPrice;
+
   return (
     <Card className={'h-fit w-full sm:w-[216px]'}>
       <CardHeader className={'flex flex-row justify-between p-2 pb-0'}>
-        <AuctionStatusTag status={auction.status} size={'sm'} />
+        {isBidding ? (
+          <BidStatusTag status={auction.bids[0].status} size={'sm'} />
+        ) : (
+          <AuctionStatusTag status={auction.status} size={'sm'} />
+        )}
         {auction.status === AuctionStatus.ACTIVE && (
           <TimeTag endsAt={auction.endsAt} size={'sm'} />
         )}
@@ -58,7 +71,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
         <Link href={`${PrivateRoute.AUCTIONS}/${auction.id}`}>
           <div className={'p-2'}>
             <CardTitle className={'text-base font-light'}>{auction.title}</CardTitle>
-            <div className={'mt-2'}>{auction.startingPrice} €</div>
+            <div className={'mt-2'}>{latestPrice} €</div>
           </div>
           <div className={'relative h-[158px] w-full'}>
             <Image

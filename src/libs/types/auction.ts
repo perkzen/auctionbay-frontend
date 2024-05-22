@@ -1,3 +1,5 @@
+import { BidStatus } from '@/libs/types/bid';
+
 export enum AuctionStatus {
   ACTIVE = 'ACTIVE',
   CLOSED = 'CLOSED',
@@ -22,4 +24,5 @@ export type Auction = {
   startingPrice: number;
   endsAt: string;
   status: AuctionStatus;
+  bids: { status: BidStatus; amount: number; bidderId: string }[];
 };
