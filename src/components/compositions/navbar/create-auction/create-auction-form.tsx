@@ -52,7 +52,7 @@ const CreateAuctionForm = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutateAsync } = useCreateAuction({
+  const { mutateAsync, isPending } = useCreateAuction({
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [AUCTION_LIST_KEY],
@@ -140,7 +140,9 @@ const CreateAuctionForm = () => {
             Cancel
           </Button>
         </DialogClose>
-        <Button form={'create-auction'}>Start auction</Button>
+        <Button form={'create-auction'} disabled={isPending}>
+          Start auction
+        </Button>
       </DialogFooter>
     </>
   );
