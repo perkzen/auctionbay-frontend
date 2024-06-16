@@ -1,4 +1,3 @@
-import React from 'react';
 import ForgotPasswordForm from '@/components/compositions/forgot-password/forgot-password-form';
 
 const ForgotPasswordPage = () => {

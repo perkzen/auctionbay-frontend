@@ -1,6 +1,7 @@
-import { QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { getAuction } from '@/libs/api/auctions';
 import AuctionDashboardPage from '@/components/containers/auction-dashboard-page';
+import { AUCTION_KEY } from '@/libs/hooks/auction';
 
 export default async function Auction({ params }: { params: { id: string } }) {
   const auctionId = params.id;
@@ -8,9 +9,13 @@ export default async function Auction({ params }: { params: { id: string } }) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['auction', auctionId],
+    queryKey: [AUCTION_KEY, auctionId],
     queryFn: () => getAuction(auctionId),
   });
 
-  return <AuctionDashboardPage auctionId={auctionId} />;
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <AuctionDashboardPage auctionId={auctionId} />
+    </HydrationBoundary>
+  );
 }
