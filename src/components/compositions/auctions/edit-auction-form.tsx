@@ -26,6 +26,7 @@ interface EditAuctionFormProps {
 }
 
 const EditAuctionForm = ({ auction }: EditAuctionFormProps) => {
+  console.log(auction);
   const {
     register,
     watch,

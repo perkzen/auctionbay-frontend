@@ -10,12 +10,15 @@ export const CreateAuctionValidator = z.object({
   endDate: z.date(),
   fileList: z
     .custom<FileList>()
-    .refine((data) => data.length > 0, {
+    .refine((files) => files.length > 0, {
       message: 'Image is required',
     })
-    .refine((data) => data[0].size <= MAX_FILE_SIZE_BYTES, {
-      message: `Image size must be less than ${MAX_FILE_SIZE_MB}MB`,
-    }),
+    .refine(
+      (files) => Array.from(files).every((file) => file.size <= MAX_FILE_SIZE_BYTES),
+      {
+        message: `Image size must be less than ${MAX_FILE_SIZE_MB}MB`,
+      }
+    ),
 });
 
 export type CreateAuctionData = z.infer<typeof CreateAuctionValidator>;
