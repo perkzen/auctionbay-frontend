@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import BellIcon from '@/assets/icons/Notifications-none.svg';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import NotificationList from '@/components/compositions/navbar/notifications/notification-list';
+import NotificationListDialog from '@/components/compositions/navbar/notifications/notification-list-dialog';
 
 const NotificationListButton = () => {
   return (
@@ -14,7 +14,7 @@ const NotificationListButton = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className={'max-w-[328px] sm:max-w-[442px]'}>
-        <NotificationList />
+        <NotificationListDialog />
       </DialogContent>
     </Dialog>
   );

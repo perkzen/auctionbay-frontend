@@ -5,10 +5,11 @@ import EmptyList from '@/components/ui/empty-list';
 import React from 'react';
 
 const HomeAuctionsList = () => {
-  const { data } = useAuctionList();
+  const { data, isLoading, isFetching, isPending } = useAuctionList();
 
   return (
     <AuctionsList
+      isLoading={isLoading || isFetching || isPending}
       auctions={data || []}
       emptyListComponent={
         <EmptyList
