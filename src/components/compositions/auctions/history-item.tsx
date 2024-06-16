@@ -29,10 +29,17 @@ const HistoryItem = ({
             <AvatarImage src={imageUrl as string} className={'rounded-full'} />
             <AvatarFallback>{getUserInitials(firstname, lastname)}</AvatarFallback>
           </Avatar>
-          <span className={'font-light'}>{username}</span>
+          <div>
+            <span className={'font-light'}>{username}</span>
+            <span className={'block font-light text-tertiary sm:hidden'}>
+              {format(new Date(createdAt), 'HH:mm d.M.yyyy')}
+            </span>
+          </div>
         </div>
-        <div className={'ml-auto space-x-8'}>
-          <span>{format(new Date(createdAt), 'HH:mm d.M.yyyy')}</span>
+        <div className={'ml-auto flex items-center space-x-8'}>
+          <span className={'hidden sm:block'}>
+            {format(new Date(createdAt), 'HH:mm d.M.yyyy')}
+          </span>
           <div
             className={
               'inline-flex items-center gap-2 rounded-2xl bg-primary-100 px-4 py-[6px]'

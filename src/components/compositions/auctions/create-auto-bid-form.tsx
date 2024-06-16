@@ -60,7 +60,7 @@ const CreateAutoBidForm = ({ disabled }: CreateAutoBidFormProps) => {
       </div>
 
       <div className={'flex flex-row items-center gap-2'}>
-        <label className={''}>Max price:</label>
+        <label className={'w-full'}>Max price:</label>
         <Input
           {...register('maxAmount')}
           type={'number'}
