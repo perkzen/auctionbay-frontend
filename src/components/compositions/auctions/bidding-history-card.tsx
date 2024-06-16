@@ -42,25 +42,36 @@ const BiddingHistoryCard = () => {
   useEffect(() => {}, [id, socket]);
 
   return (
-    <Card className={'h-full'}>
+    <Card className={'flex h-full flex-col'}>
       <CardHeader>
         <CardTitle className={'text-1.5xl font-bold'}>
           Bidding History ({data?.length || 0})
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className={'flex flex-col'}>
-          {data?.map((item, i) => (
-            <HistoryItem
-              key={i}
-              firstname={item.bidder.firstname}
-              lastname={item.bidder.lastname}
-              imageUrl={item.bidder.imageUrl}
-              createdAt={item.createdAt.toString()}
-              amount={item.amount}
-            />
-          ))}
-        </ul>
+      <CardContent className={'flex-grow'}>
+        {data?.length !== 0 ? (
+          <div className={'flex h-full flex-col items-center justify-center gap-2 py-8'}>
+            <div className={'text-[18px] font-semibold leading-[21.6px]'}>
+              No bids yet!
+            </div>
+            <div className={'text-center text-tertiary'}>
+              Place your bid to have a chance to get this item.
+            </div>
+          </div>
+        ) : (
+          <ul className={'flex flex-col'}>
+            {data?.map((item, i) => (
+              <HistoryItem
+                key={i}
+                firstname={item.bidder.firstname}
+                lastname={item.bidder.lastname}
+                imageUrl={item.bidder.imageUrl}
+                createdAt={item.createdAt.toString()}
+                amount={item.amount}
+              />
+            ))}
+          </ul>
+        )}
       </CardContent>
     </Card>
   );

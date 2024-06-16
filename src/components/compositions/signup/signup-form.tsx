@@ -8,17 +8,27 @@ import { SignUpData, SignUpValidator } from '@/libs/validators/signup-validator'
 import PasswordInput from '@/components/ui/password-input';
 import { toast } from 'sonner';
 import { useSignup } from '@/libs/hooks/auth';
+import { useRouter } from 'next/navigation';
+import { PublicRoute } from '@/routes';
 
 const SignupForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<SignUpData>({
     resolver: zodResolver(SignUpValidator),
   });
 
-  const { mutateAsync } = useSignup();
+  const router = useRouter();
+
+  const { mutateAsync } = useSignup({
+    onSuccess: () => {
+      router.push(PublicRoute.LOGIN);
+      reset();
+    },
+  });
 
   const onSubmit = (data: SignUpData) => {
     toast.promise(
