@@ -25,7 +25,7 @@ export default function Home() {
         <Image quality={100} src={AuctionsDesktopImage} alt={'auctions'} fill priority />
       </div>
       <Image
-        quality={1}
+        quality={100}
         src={AuctionsMobileImage}
         alt={'auctions'}
         className={'visible mt-auto sm:hidden'}
