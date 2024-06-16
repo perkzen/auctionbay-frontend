@@ -25,10 +25,11 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
           }
         >
           <Image
+            quality={100}
             src={data.imageUrl}
             alt={data.title}
             className={'rounded-2xl'}
-            fill={true}
+            fill
           />
         </div>
         <div className={'flex w-full flex-col gap-4 sm:w-1/2'}>
