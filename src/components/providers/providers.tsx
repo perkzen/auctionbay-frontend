@@ -31,7 +31,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
             options={{ showSpinner: false }}
           />
           {children}
-          <ToastProvider position={'top-center'} richColors />
+          <ToastProvider position={'bottom-right'} richColors />
         </NotificationProvider>
       </QueryClientProvider>
     </SessionProvider>
