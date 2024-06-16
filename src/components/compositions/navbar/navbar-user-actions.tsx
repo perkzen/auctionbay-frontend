@@ -1,4 +1,3 @@
-import React from 'react';
 import NotificationListButton from '@/components/compositions/navbar/notifications/notification-list-button';
 import CreateAuctionButton from '@/components/compositions/navbar/create-auction/create-auction-button';
 import SignOutPopover from '@/components/compositions/navbar/sign-out-popover';
