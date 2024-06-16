@@ -1,14 +1,15 @@
+'use client';
 import AuctionBayLogo from '@/assets/auctionbay-logo.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PublicRoute } from '@/routes';
-import { getServerAuthSession } from '@/libs/server/auth';
 import NavigationTabs from '@/components/compositions/navbar/navigation-tabs';
 import NavbarUserActions from '@/components/compositions/navbar/navbar-user-actions';
 import NavbarAuthActions from '@/components/compositions/navbar/navbar-auth-actions';
+import { useSession } from 'next-auth/react';
 
-const Navbar = async () => {
-  const session = await getServerAuthSession();
+const Navbar = () => {
+  const { data: session } = useSession();
 
   return (
     <div className={'m-4 flex flex-row items-center justify-between sm:mx-8 sm:my-5'}>
