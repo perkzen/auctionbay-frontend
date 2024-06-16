@@ -76,6 +76,7 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
           </div>
           <div className={'relative h-[158px] w-full'}>
             <Image
+              quality={100}
               src={auction.imageUrl}
               alt={'image'}
               fill

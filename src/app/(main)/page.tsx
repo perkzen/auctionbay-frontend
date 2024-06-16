@@ -14,23 +14,18 @@ export default function Home() {
         </h1>
         <p className={'font-light'}>
           Simple way for selling your unused
-          <br className={'visible md:hidden'} /> products, or getting a deal on
-          product you <br className={'visible sm:hidden'} /> want!
+          <br className={'visible md:hidden'} /> products, or getting a deal on product
+          you <br className={'visible sm:hidden'} /> want!
         </p>
       </div>
       <LinkButton href={PrivateRoute.AUCTIONS} className={'mt-4 sm:mt-8'}>
         Start bidding
       </LinkButton>
       <div className={'relative mt-24 hidden w-full flex-grow sm:block'}>
-        <Image
-          src={AuctionsDesktopImage}
-          alt={'auctions'}
-          className={''}
-          layout={'fill'}
-          priority
-        />
+        <Image quality={100} src={AuctionsDesktopImage} alt={'auctions'} fill priority />
       </div>
       <Image
+        quality={100}
         src={AuctionsMobileImage}
         alt={'auctions'}
         className={'visible mt-auto sm:hidden'}
