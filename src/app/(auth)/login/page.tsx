@@ -1,6 +1,4 @@
-import React from 'react';
-
-import LoginPage from '@/components/compositions/login/login-page';
+import LoginPage from '@/components/containers/login-page';
 
 const Login = () => {
   return <LoginPage />;
