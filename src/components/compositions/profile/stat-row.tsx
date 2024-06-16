@@ -18,7 +18,8 @@ const StatRow = () => {
       <StatCard
         title="Earnings"
         info="All-time"
-        value={`${earnings || 0} €`}
+        value={earnings || 0}
+        unit="€"
         variant="dark"
       />
       <StatCard title="Posted auctions" info="All-time" value={postedAuctions || 0} />

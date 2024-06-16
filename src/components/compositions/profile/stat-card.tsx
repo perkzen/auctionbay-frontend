@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/libs/utils';
+import CountUp from 'react-countup';
 
 const statCardVariant = cva('flex flex-col sm:w-full', {
   variants: {
@@ -17,11 +18,12 @@ const statCardVariant = cva('flex flex-col sm:w-full', {
 interface StatCardProps extends VariantProps<typeof statCardVariant> {
   title: string;
   info?: string;
-  value: string | number;
+  value: number;
   numberColor?: 'text-success';
+  unit?: '€';
 }
 
-const StatCard = ({ title, variant, value, info, numberColor }: StatCardProps) => {
+const StatCard = ({ title, variant, value, info, numberColor, unit }: StatCardProps) => {
   return (
     <Card
       className={cn(
@@ -47,7 +49,7 @@ const StatCard = ({ title, variant, value, info, numberColor }: StatCardProps) =
             numberColor
           )}
         >
-          {value}
+          <CountUp start={0} end={value} suffix={unit} />
         </div>
       </CardContent>
     </Card>

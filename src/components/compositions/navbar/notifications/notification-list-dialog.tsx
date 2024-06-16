@@ -13,6 +13,7 @@ const NotificationListDialog = () => {
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useGetNotifications();
+  console.log(data);
 
   const { mutateAsync } = useClearAllNotifications({
     onSuccess: async () => {
