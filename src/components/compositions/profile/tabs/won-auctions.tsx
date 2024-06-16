@@ -4,10 +4,11 @@ import { useUserWonAuctions } from '@/libs/hooks/auction';
 import AuctionsList from '@/components/compositions/auctions/auctions-list';
 
 const WonAuctions = () => {
-  const { data } = useUserWonAuctions();
+  const { data, isLoading, isPending, isFetching } = useUserWonAuctions();
 
   return (
     <AuctionsList
+      isLoading={isLoading || isFetching || isPending}
       auctions={data || []}
       emptyListComponent={
         <div className={'flex h-full'}>

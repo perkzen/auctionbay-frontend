@@ -4,10 +4,11 @@ import { useUserAuctions } from '@/libs/hooks/auction';
 import AuctionsList from '@/components/compositions/auctions/auctions-list';
 
 const MyAuctions = () => {
-  const { data } = useUserAuctions();
+  const { data, isLoading, isFetching, isPending } = useUserAuctions();
 
   return (
     <AuctionsList
+      isLoading={isLoading || isFetching || isPending}
       auctions={data || []}
       canEdit
       emptyListComponent={

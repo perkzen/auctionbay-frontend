@@ -1,49 +1,28 @@
-import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import {
-  GET_NOTIFICATIONS_KEY,
-  useClearAllNotifications,
-  useGetNotifications,
-} from '@/libs/hooks/notification';
-import { toast } from 'sonner';
-import { useQueryClient } from '@tanstack/react-query';
 import NotificationListItem from '@/components/compositions/navbar/notifications/notification-list-item';
 import EmptyNotificationList from '@/components/compositions/navbar/notifications/empty-notification-list';
+import { AuctionClosedNotification } from '@/libs/types/notification';
+import NotificationSkeleton from '@/components/compositions/navbar/notifications/notification-skeleton';
 
-const NotificationList = () => {
-  const queryClient = useQueryClient();
+interface NotificationListProps {
+  isLoading?: boolean;
+  data: AuctionClosedNotification[];
+}
 
-  const { data } = useGetNotifications();
-
-  const { mutateAsync } = useClearAllNotifications({
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: [GET_NOTIFICATIONS_KEY],
-      });
-    },
-  });
-
-  const clearNotifications = () => {
-    toast.promise(mutateAsync(), {
-      loading: 'Clearing notifications...',
-      success: 'Notifications cleared',
-      error: 'Failed to clear notifications',
-    });
-  };
+const NotificationList = ({ data, isLoading }: NotificationListProps) => {
+  if (isLoading) {
+    return (
+      <ul className={'flex flex-col gap-4'}>
+        {Array.from({ length: 3 }).map((_, index) => (
+          <li key={index}>
+            <NotificationSkeleton />
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <>
-      <DialogHeader className={'m-0 flex flex-row justify-between space-y-0'}>
-        <DialogTitle>Notifications</DialogTitle>
-        <Button
-          variant={'ghost'}
-          size={'fit'}
-          className={'font-medium'}
-          onClick={clearNotifications}
-        >
-          Clear all
-        </Button>
-      </DialogHeader>
       {data?.length === 0 ? (
         <EmptyNotificationList />
       ) : (
