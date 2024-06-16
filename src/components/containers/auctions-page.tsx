@@ -1,4 +1,3 @@
-import React from 'react';
 import HomeAuctionsList from '@/components/compositions/auctions/home-auctions-list';
 
 const AuctionsPage = () => {
