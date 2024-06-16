@@ -49,7 +49,7 @@ const BiddingHistoryCard = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className={'flex-grow'}>
-        {data?.length !== 0 ? (
+        {data?.length == 0 ? (
           <div className={'flex h-full flex-col items-center justify-center gap-2 py-8'}>
             <div className={'text-[18px] font-semibold leading-[21.6px]'}>
               No bids yet!
