@@ -9,7 +9,7 @@ export const CreateAuctionValidator = z.object({
   startingPrice: numberString(),
   endDate: z.date(),
   fileList: z
-    .instanceof(FileList)
+    .custom<FileList>()
     .refine((files) => files.length > 0, {
       message: 'Image is required',
     })

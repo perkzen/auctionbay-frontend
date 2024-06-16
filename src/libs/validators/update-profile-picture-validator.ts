@@ -4,7 +4,7 @@ import { MAX_FILE_SIZE_BYTES, MAX_FILE_SIZE_MB } from '@/libs/constants';
 
 export const UpdateProfilePictureValidator = z.object({
   fileList: z
-    .instanceof(FileList)
+    .custom<FileList>()
     .refine((files) => files.length > 0, {
       message: 'Image is required',
     })
