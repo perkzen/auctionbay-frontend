@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env.local
+.env.*
 
 # vercel
 .vercel
@@ -38,5 +39,3 @@ next-env.d.ts
 # IntelliJ IDEA
 .idea
 
-# Env files
-.env.local
