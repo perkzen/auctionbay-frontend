@@ -1,0 +1,11 @@
+
+services:
+  auctionbay-frontend:
+    container_name: auctionbay-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.docker
