@@ -11,17 +11,21 @@ import { AxiosError } from 'axios';
 export const GET_NOTIFICATIONS_KEY = 'get-notifications';
 
 export const useGetNotifications = (
-  opts?: UseQueryOptions<
-    AuctionClosedNotification[],
-    AxiosError,
-    AuctionClosedNotification[],
-    [typeof GET_NOTIFICATIONS_KEY]
+  opts?: Omit<
+    UseQueryOptions<
+      AuctionClosedNotification[],
+      AxiosError,
+      AuctionClosedNotification[],
+      [typeof GET_NOTIFICATIONS_KEY]
+    >,
+    'queryKey'
   >
 ) =>
   useQuery({
     queryKey: [GET_NOTIFICATIONS_KEY],
     queryFn: getNotifications,
     ...opts,
+    initialData: [],
   });
 
 export const CLEAR_ALL_NOTIFICATIONS_KEY = 'clear-all-notifications';

@@ -16,7 +16,11 @@ import AuctionStatusTag from '@/components/compositions/auctions/auction-status-
 import Link from 'next/link';
 import { PrivateRoute } from '@/routes';
 import { Button } from '@/components/ui/button';
-import { useDeleteAuction, USER_AUCTIONS_KEY } from '@/libs/hooks/auction';
+import {
+  AUCTION_LIST_KEY,
+  useDeleteAuction,
+  USER_AUCTIONS_KEY,
+} from '@/libs/hooks/auction';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -34,9 +38,10 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
 
   const { mutateAsync } = useDeleteAuction(auction.id, {
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: [USER_AUCTIONS_KEY],
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: [USER_AUCTIONS_KEY] }),
+        queryClient.invalidateQueries({ queryKey: [AUCTION_LIST_KEY] }),
+      ]);
     },
   });
 
