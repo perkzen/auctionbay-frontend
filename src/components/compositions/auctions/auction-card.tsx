@@ -27,6 +27,10 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import EditAuctionForm from '@/components/compositions/auctions/edit-auction-form';
 import BidStatusTag from '@/components/compositions/auctions/bid-status-tag';
 import { useSession } from 'next-auth/react';
+import {
+  USER_EARNINGS_QUERY_KEY,
+  USER_POSTED_AUCTIONS_QUERY_KEY,
+} from '@/libs/hooks/statistics';
 
 interface AuctionCardProps {
   auction: Auction;
@@ -41,6 +45,8 @@ const AuctionCard = ({ auction, canEdit }: AuctionCardProps) => {
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: [USER_AUCTIONS_KEY] }),
         queryClient.invalidateQueries({ queryKey: [AUCTION_LIST_KEY] }),
+        queryClient.invalidateQueries({ queryKey: [USER_EARNINGS_QUERY_KEY] }),
+        queryClient.invalidateQueries({ queryKey: [USER_POSTED_AUCTIONS_QUERY_KEY] }),
       ]);
     },
   });
