@@ -32,7 +32,7 @@ npm install
 Create a `.env` file in the root directory with the following content:
 
 ```env
-#NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 NEXTAUTH_SECRET=secret
 NEXTAUTH_URL=http://localhost:3000/api/auth
 ```
