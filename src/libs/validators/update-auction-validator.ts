@@ -37,7 +37,6 @@ export const UpdateAuctionValidator = z
   .refine(
     (data) => {
       const isFile = Boolean(data.fileList && data.fileList.length > 0);
-      console.log(data.auctionHasImageUrl, isFile);
       return data.auctionHasImageUrl || isFile;
     },
     {
