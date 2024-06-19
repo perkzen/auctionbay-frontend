@@ -1,6 +1,6 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { getAuction } from '@/libs/api/auctions';
-import AuctionDashboardPage from '@/components/containers/auction-dashboard-page';
+import AuctionDetailsPage from '@/components/containers/auction-details-page';
 import { AUCTION_KEY } from '@/libs/hooks/auction';
 
 export default async function Auction({ params }: { params: { id: string } }) {
@@ -15,7 +15,7 @@ export default async function Auction({ params }: { params: { id: string } }) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <AuctionDashboardPage auctionId={auctionId} />
+      <AuctionDetailsPage auctionId={auctionId} />
     </HydrationBoundary>
   );
 }

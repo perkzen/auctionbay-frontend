@@ -5,11 +5,11 @@ import BiddingHistoryCard from '@/components/compositions/auctions/bidding-histo
 import AuctionInfoCard from '@/components/compositions/auctions/auction-info-card';
 import { useSession } from 'next-auth/react';
 
-interface AuctionDashboardProps {
+interface AuctionDetailsProps {
   auctionId: string;
 }
 
-const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
+const AuctionDetailsPage = ({ auctionId }: AuctionDetailsProps) => {
   const { data } = useAuction(auctionId);
 
   const { data: session } = useSession();
@@ -47,4 +47,4 @@ const AuctionDashboardPage = ({ auctionId }: AuctionDashboardProps) => {
   );
 };
 
-export default AuctionDashboardPage;
+export default AuctionDetailsPage;
