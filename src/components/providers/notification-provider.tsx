@@ -20,7 +20,6 @@ const NotificationProvider = ({ children }: NotificationProviderProps) => {
 
   useEffect(() => {
     if (socket) {
-      console.log('Connected to notifications namespace');
       socket.on(SocketEvent.NEW_NOTIFICATION, async (notification) => {
         await refetch();
         toast.success(
