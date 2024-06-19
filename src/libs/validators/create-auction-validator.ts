@@ -4,8 +4,22 @@ import { numberString } from '@/libs/validators/common';
 import { MAX_FILE_SIZE_BYTES, MAX_FILE_SIZE_MB } from '@/libs/constants';
 
 export const CreateAuctionValidator = z.object({
-  title: z.string().min(2),
-  description: z.string().min(2),
+  title: z
+    .string()
+    .min(2, {
+      message: 'Title must be at least 2 characters',
+    })
+    .max(100, {
+      message: 'Title must be less than 100 characters',
+    }),
+  description: z
+    .string()
+    .min(2, {
+      message: 'Description must be at least 2 characters',
+    })
+    .max(1000, {
+      message: 'Description must be less than 1000 characters',
+    }),
   startingPrice: numberString(),
   endDate: z.date(),
   fileList: z

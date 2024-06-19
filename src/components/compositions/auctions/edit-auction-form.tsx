@@ -39,6 +39,7 @@ const EditAuctionForm = ({ auction }: EditAuctionFormProps) => {
       title: auction.title,
       fileList: undefined,
       description: auction.description,
+      auctionHasImageUrl: !!auction.imageUrl,
     },
     resolver: zodResolver(UpdateAuctionValidator),
   });
@@ -49,13 +50,14 @@ const EditAuctionForm = ({ auction }: EditAuctionFormProps) => {
 
   const { mutateAsync } = useUpdateAuction(auction.id, {
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: [USER_AUCTIONS_KEY],
-      });
-
-      await queryClient.invalidateQueries({
-        queryKey: [AUCTION_KEY, auction.id],
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [USER_AUCTIONS_KEY],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [AUCTION_KEY, auction.id],
+        }),
+      ]);
 
       closeBtnRef.current?.click();
     },
@@ -64,6 +66,7 @@ const EditAuctionForm = ({ auction }: EditAuctionFormProps) => {
   const image = watch('fileList')?.item(0);
 
   const handleRemoveImage = () => {
+    setValue('auctionHasImageUrl', false);
     resetField('fileList');
   };
 
