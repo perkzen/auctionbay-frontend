@@ -36,7 +36,6 @@ const SignupForm = () => {
         await mutateAsync(data);
       },
       {
-        position: 'top-center',
         loading: 'Creating account...',
         success: 'Account created!',
         error: 'Failed to create account. Please try again.',

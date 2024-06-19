@@ -14,7 +14,7 @@ import Image from 'next/image';
 
 interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
   onRemove: () => void;
-  image: File | null;
+  image: File | null | undefined;
   url?: string;
   error?: string;
 }
