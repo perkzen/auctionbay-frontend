@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AuctionStatusTag from '@/components/compositions/auctions/auction-status-tag';
 import TimeTag from '@/components/ui/time-tag';
@@ -6,6 +6,8 @@ import { AuctionStatus } from '@/libs/types/auction';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import CreateBidForm from '@/components/compositions/auctions/create-bid-form';
 import CreateAutoBidForm from '@/components/compositions/auctions/create-auto-bid-form';
+import { usePathname } from 'next/navigation';
+import { hotjar } from 'react-hotjar';
 
 interface AuctionInfoCardProps {
   status: AuctionStatus;
@@ -24,6 +26,14 @@ const AuctionInfoCard = ({
   disableBidding,
   startingPrice,
 }: AuctionInfoCardProps) => {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    hotjar.initialize({ id: 5226377, sv: 6 });
+
+    hotjar.event(`viewed_${pathname}`);
+  }, [pathname]);
+
   return (
     <Card>
       <CardHeader className={'flex flex-row justify-between'}>
@@ -32,7 +42,9 @@ const AuctionInfoCard = ({
       </CardHeader>
       <CardContent className={'flex flex-col gap-4'}>
         <CardTitle>{title}</CardTitle>
-        <p className={'text-sm font-light'}>Starting price: {startingPrice} $</p>
+        {pathname.includes('auctions2') && (
+          <p className={'text-sm font-light'}>Starting price: {startingPrice} $</p>
+        )}
         <p>{description}</p>
         <Tabs defaultValue={'bid'} className={'flex w-full flex-grow flex-col gap-4'}>
           <TabsList className="flex w-full flex-row gap-2 rounded-2xl bg-tertiary-100 sm:w-fit">
