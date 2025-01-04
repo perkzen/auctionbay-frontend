@@ -3,6 +3,8 @@ import { useAuctionList } from '@/libs/hooks/auction';
 import AuctionsList from '@/components/compositions/auctions/auctions-list';
 import EmptyList from '@/components/ui/empty-list';
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import CreateAuctionButton from '@/components/compositions/navbar/create-auction/create-auction-button';
 
 const HomeAuctionsList = () => {
   const { data, isLoading, isFetching, isPending } = useAuctionList();
@@ -15,8 +17,10 @@ const HomeAuctionsList = () => {
         <EmptyList
           title={'Oh no, no auctions yet!'}
           info={
-            'To add new auction click “+” button in navigation bar or wait for other ' +
-            'users to add new auctions.'
+            'To add new auction by clicking the button down below and new auctions will be added here!'
+          }
+          buttonComponent={
+            <CreateAuctionButton buttonComponent={<Button>Add auction</Button>} />
           }
         />
       }

@@ -39,6 +39,7 @@ const AuctionDetailsPage = ({ auctionId }: AuctionDetailsProps) => {
             endsAt={data.endsAt}
             title={data.title}
             description={data.description}
+            startingPrice={data.startingPrice}
           />
           <BiddingHistoryCard />
         </div>

@@ -2,6 +2,7 @@
 import EmptyList from '@/components/ui/empty-list';
 import { useUserBiddingAuctions } from '@/libs/hooks/auction';
 import AuctionsList from '@/components/compositions/auctions/auctions-list';
+import React from 'react';
 
 const BiddingAuctions = () => {
   const { data, isLoading, isPending, isFetching } = useUserBiddingAuctions();

@@ -2,6 +2,7 @@
 import EmptyList from '@/components/ui/empty-list';
 import { useUserWonAuctions } from '@/libs/hooks/auction';
 import AuctionsList from '@/components/compositions/auctions/auctions-list';
+import React from 'react';
 
 const WonAuctions = () => {
   const { data, isLoading, isPending, isFetching } = useUserWonAuctions();

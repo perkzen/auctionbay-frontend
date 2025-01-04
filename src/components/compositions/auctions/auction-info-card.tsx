@@ -13,6 +13,7 @@ interface AuctionInfoCardProps {
   description: string;
   endsAt: string;
   disableBidding: boolean;
+  startingPrice?: number;
 }
 
 const AuctionInfoCard = ({
@@ -21,6 +22,7 @@ const AuctionInfoCard = ({
   status,
   endsAt,
   disableBidding,
+  startingPrice,
 }: AuctionInfoCardProps) => {
   return (
     <Card>
@@ -30,6 +32,7 @@ const AuctionInfoCard = ({
       </CardHeader>
       <CardContent className={'flex flex-col gap-4'}>
         <CardTitle>{title}</CardTitle>
+        <p className={'text-sm font-light'}>Starting price: {startingPrice} $</p>
         <p>{description}</p>
         <Tabs defaultValue={'bid'} className={'flex w-full flex-grow flex-col gap-4'}>
           <TabsList className="flex w-full flex-row gap-2 rounded-2xl bg-tertiary-100 sm:w-fit">
