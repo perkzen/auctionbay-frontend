@@ -29,11 +29,15 @@ const AuctionInfoCard = ({
   const pathname = usePathname();
 
   useEffect(() => {
-    Hotjar.init(5226377, 6, {
-      debug: true,
-    });
+    try {
+      Hotjar.init(5226377, 6, {
+        debug: true,
+      });
 
-    Hotjar.event(`viewed_${pathname}`);
+      Hotjar.event(`viewed_${pathname}`);
+    } catch (e) {
+      console.log(e);
+    }
   }, [pathname]);
 
   return (
