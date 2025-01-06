@@ -6,16 +6,18 @@ import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CreateAuctionButton from '@/components/compositions/navbar/create-auction/create-auction-button';
 import { usePathname } from 'next/navigation';
-import { hotjar } from 'react-hotjar';
+import Hotjar from '@hotjar/browser';
 
 const HomeAuctionsList = () => {
   const { data, isLoading, isFetching, isPending } = useAuctionList();
   const pathname = usePathname();
 
   useEffect(() => {
-    hotjar.initialize({ id: 5226377, sv: 6 });
+    Hotjar.init(5226377, 6, {
+      debug: true,
+    });
 
-    hotjar.event(`viewed_${pathname}`);
+    Hotjar.event(`viewed_${pathname}`);
   }, [pathname]);
 
   return (

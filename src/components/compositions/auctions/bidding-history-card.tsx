@@ -14,32 +14,32 @@ const BiddingHistoryCard = () => {
   const { id } = params;
 
   const { data, refetch, isLoading } = useBiddingHistory(id as string);
-
-  const socket = useSocket({
-    namespace: SocketNamespace.LIVE_BIDS,
-  });
+  //
+  // const socket = useSocket({
+  //   namespace: SocketNamespace.LIVE_BIDS,
+  // });
 
   const session = useSession();
 
-  useEffect(() => {
-    if (socket) {
-      socket.emit(SocketEvent.JOIN_ROOM, String(id));
-      socket.on(SocketEvent.NEW_BID, async (data: NewBidEventPayload) => {
-        //if we are int the correct room and the bid is not from the current user, refetch the data
-        if (data.auctionId === id && data.bidderId !== session.data?.user.id) {
-          await refetch();
-        }
-      });
-    }
-    return () => {
-      if (socket) {
-        socket.off(SocketEvent.NEW_BID);
-        socket.emit(SocketEvent.LEAVE_ROOM, String(id));
-      }
-    };
-  }, [id, refetch, session.data?.user.id, socket]);
-
-  useEffect(() => {}, [id, socket]);
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.emit(SocketEvent.JOIN_ROOM, String(id));
+  //     socket.on(SocketEvent.NEW_BID, async (data: NewBidEventPayload) => {
+  //       //if we are int the correct room and the bid is not from the current user, refetch the data
+  //       if (data.auctionId === id && data.bidderId !== session.data?.user.id) {
+  //         await refetch();
+  //       }
+  //     });
+  //   }
+  //   return () => {
+  //     if (socket) {
+  //       socket.off(SocketEvent.NEW_BID);
+  //       socket.emit(SocketEvent.LEAVE_ROOM, String(id));
+  //     }
+  //   };
+  // }, [id, refetch, session.data?.user.id, socket]);
+  //
+  // useEffect(() => {}, [id, socket]);
 
   return (
     <Card className={'flex h-full flex-col'}>

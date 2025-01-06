@@ -10,30 +10,30 @@ type NotificationProviderProps = {
 };
 
 const NotificationProvider = ({ children }: NotificationProviderProps) => {
-  const socket = useSocket({
-    namespace: SocketNamespace.LIVE_NOTIFICATIONS,
-  });
+  // const socket = useSocket({
+  //   namespace: SocketNamespace.LIVE_NOTIFICATIONS,
+  // });
 
   const { refetch } = useGetNotifications({
     enabled: false,
   });
 
-  useEffect(() => {
-    if (socket) {
-      socket.on(SocketEvent.NEW_NOTIFICATION, async (notification) => {
-        await refetch();
-        toast.success(
-          `Congratulations you won the auction for ${notification.data.message}! `
-        );
-      });
-    }
-
-    return () => {
-      if (socket) {
-        socket.off(SocketEvent.NEW_NOTIFICATION);
-      }
-    };
-  }, [refetch, socket]);
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.on(SocketEvent.NEW_NOTIFICATION, async (notification) => {
+  //       await refetch();
+  //       toast.success(
+  //         `Congratulations you won the auction for ${notification.data.message}! `
+  //       );
+  //     });
+  //   }
+  //
+  //   return () => {
+  //     if (socket) {
+  //       socket.off(SocketEvent.NEW_NOTIFICATION);
+  //     }
+  //   };
+  // }, [refetch, socket]);
 
   return <>{children}</>;
 };

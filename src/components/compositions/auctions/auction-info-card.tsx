@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import CreateBidForm from '@/components/compositions/auctions/create-bid-form';
 import CreateAutoBidForm from '@/components/compositions/auctions/create-auto-bid-form';
 import { usePathname } from 'next/navigation';
-import { hotjar } from 'react-hotjar';
+import Hotjar from '@hotjar/browser';
 
 interface AuctionInfoCardProps {
   status: AuctionStatus;
@@ -29,9 +29,11 @@ const AuctionInfoCard = ({
   const pathname = usePathname();
 
   useEffect(() => {
-    hotjar.initialize({ id: 5226377, sv: 6 });
+    Hotjar.init(5226377, 6, {
+      debug: true,
+    });
 
-    hotjar.event(`viewed_${pathname}`);
+    Hotjar.event(`viewed_${pathname}`);
   }, [pathname]);
 
   return (
